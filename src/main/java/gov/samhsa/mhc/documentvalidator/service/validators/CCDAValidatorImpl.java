@@ -10,7 +10,6 @@ import org.openhealthtools.mdht.uml.cda.consol.ConsolPackage;
 import org.openhealthtools.mdht.uml.cda.util.CDADiagnostic;
 import org.openhealthtools.mdht.uml.cda.util.CDAUtil;
 import org.openhealthtools.mdht.uml.cda.util.ValidationResult;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
@@ -21,12 +20,9 @@ import java.util.stream.Collectors;
 @Service
 public class CCDAValidatorImpl implements CCDAValidator {
 
-    @Autowired
-    private ValidationResult result;
-
     @Override
     public ArrayList<DocumentValidationResult> validateCCDA(InputStream ccdaFile) throws SAXException {
-
+        ValidationResult result = new ValidationResult();
         createValidationResultObjectToCollectDiagnosticsProducedDuringValidation();
         try {
             CDAUtil.load(ccdaFile, result);

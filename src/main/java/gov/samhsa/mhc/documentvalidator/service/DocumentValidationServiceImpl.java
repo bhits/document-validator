@@ -3,15 +3,15 @@
  */
 package gov.samhsa.mhc.documentvalidator.service;
 
+import gov.samhsa.mhc.documentvalidator.service.dto.ValidationRequestDto;
 import gov.samhsa.mhc.documentvalidator.service.dto.ValidationResponseDto;
 import gov.samhsa.mhc.documentvalidator.service.dto.ValidationResultsMetaData;
 import gov.samhsa.mhc.documentvalidator.service.validators.CCDAValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
 
-import java.io.IOException;
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +28,12 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
     }
 
     @Override
-    public ValidationResponseDto validateDocument(MultipartFile documentFile) {
+    public ValidationResponseDto validateDocument(ValidationRequestDto requestDto) {
         ValidationResponseDto responseDto = new ValidationResponseDto();
         ValidationResultsMetaData resultsMetaData;
         List<DocumentValidationResult> validatorResults;
         try {
-            validatorResults = runValidators(documentFile);
+            validatorResults = runValidators(requestDto);
             resultsMetaData = buildValidationMedata(validatorResults);
         } catch (SAXException e) {
             //TODO
@@ -44,20 +44,11 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
         return responseDto;
     }
 
-    private List<DocumentValidationResult> runValidators(MultipartFile documentFile) throws SAXException {
+    private List<DocumentValidationResult> runValidators(ValidationRequestDto requestDto) throws SAXException {
         List<DocumentValidationResult> validatorResults = new ArrayList<>();
-        InputStream documentFileContents;
-        try {
-            documentFileContents = documentFile.getInputStream();
-            validatorResults.addAll(doValidation(documentFileContents));
-        } catch (IOException e) {
-            throw new RuntimeException("Error getting CCDA contents from provided file", e);
-        }
+        InputStream documentFileContents = new ByteArrayInputStream(requestDto.getDocument());
+        validatorResults.addAll(ccdaValidator.validateCCDA(documentFileContents));
         return validatorResults;
-    }
-
-    private List<DocumentValidationResult> doValidation(InputStream documentFile) throws SAXException {
-        return ccdaValidator.validateCCDA(documentFile);
     }
 
     private ValidationResultsMetaData buildValidationMedata(List<DocumentValidationResult> validatorResults) {
