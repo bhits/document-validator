@@ -5,7 +5,6 @@ package gov.samhsa.mhc.documentvalidator.service.validators;
 
 import gov.samhsa.mhc.documentvalidator.service.DiagnosticType;
 import gov.samhsa.mhc.documentvalidator.service.DocumentValidationResult;
-import org.apache.commons.io.IOUtils;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.openhealthtools.mdht.uml.cda.consol.ConsolPackage;
 import org.openhealthtools.mdht.uml.cda.util.CDADiagnostic;
@@ -15,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -27,24 +25,15 @@ public class CCDAValidatorImpl implements CCDAValidator {
     private ValidationResult result;
 
     @Override
-    public ArrayList<DocumentValidationResult> validateCCDA(String ccdaFile) throws SAXException {
+    public ArrayList<DocumentValidationResult> validateCCDA(InputStream ccdaFile) throws SAXException {
 
-        InputStream in = null;
         createValidationResultObjectToCollectDiagnosticsProducedDuringValidation();
         try {
-            in = IOUtils.toInputStream(ccdaFile, "UTF-8");
-            CDAUtil.load(in, result);
+            CDAUtil.load(ccdaFile, result);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
+
         return processValidationResults(result);
     }
 

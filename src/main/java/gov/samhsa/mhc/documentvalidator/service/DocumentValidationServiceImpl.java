@@ -6,7 +6,6 @@ package gov.samhsa.mhc.documentvalidator.service;
 import gov.samhsa.mhc.documentvalidator.service.dto.ValidationResponseDto;
 import gov.samhsa.mhc.documentvalidator.service.dto.ValidationResultsMetaData;
 import gov.samhsa.mhc.documentvalidator.service.validators.CCDAValidator;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,12 +28,12 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
     }
 
     @Override
-    public ValidationResponseDto validateDocument(MultipartFile ccdaFile) {
+    public ValidationResponseDto validateDocument(MultipartFile documentFile) {
         ValidationResponseDto responseDto = new ValidationResponseDto();
-        ValidationResultsMetaData resultsMetaData = new ValidationResultsMetaData();
-        List<DocumentValidationResult> validatorResults = new ArrayList<DocumentValidationResult>();
+        ValidationResultsMetaData resultsMetaData;
+        List<DocumentValidationResult> validatorResults;
         try {
-            validatorResults = runValidators(ccdaFile);
+            validatorResults = runValidators(documentFile);
             resultsMetaData = buildValidationMedata(validatorResults);
         } catch (SAXException e) {
             //TODO
@@ -45,25 +44,20 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
         return responseDto;
     }
 
-    private List<DocumentValidationResult> runValidators(MultipartFile ccdaFile) throws SAXException {
-        List<DocumentValidationResult> validatorResults = new ArrayList<DocumentValidationResult>();
-        String ccdaFileContents;
-        InputStream fileIs = null;
+    private List<DocumentValidationResult> runValidators(MultipartFile documentFile) throws SAXException {
+        List<DocumentValidationResult> validatorResults = new ArrayList<>();
+        InputStream documentFileContents;
         try {
-            fileIs = ccdaFile.getInputStream();
-            ccdaFileContents = IOUtils.toString(fileIs);
-            validatorResults.addAll(doValidation(ccdaFileContents));
-
+            documentFileContents = documentFile.getInputStream();
+            validatorResults.addAll(doValidation(documentFileContents));
         } catch (IOException e) {
             throw new RuntimeException("Error getting CCDA contents from provided file", e);
-        } finally {
-            closeFileInputStream(fileIs);
         }
         return validatorResults;
     }
 
-    private List<DocumentValidationResult> doValidation(String ccdaFileContents) throws SAXException {
-        return ccdaValidator.validateCCDA(ccdaFileContents);
+    private List<DocumentValidationResult> doValidation(InputStream documentFile) throws SAXException {
+        return ccdaValidator.validateCCDA(documentFile);
     }
 
     private ValidationResultsMetaData buildValidationMedata(List<DocumentValidationResult> validatorResults) {
@@ -72,15 +66,5 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
             resultsMetaData.addCount(result.getType());
         }
         return resultsMetaData;
-    }
-
-    private void closeFileInputStream(InputStream fileIs) {
-        if (fileIs != null) {
-            try {
-                fileIs.close();
-            } catch (IOException e) {
-                throw new RuntimeException("Error closing CCDA file input stream", e);
-            }
-        }
     }
 }
