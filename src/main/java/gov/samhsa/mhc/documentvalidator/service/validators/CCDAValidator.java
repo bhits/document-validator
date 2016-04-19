@@ -3,7 +3,7 @@
  */
 package gov.samhsa.mhc.documentvalidator.service.validators;
 
-import gov.samhsa.mhc.documentvalidator.service.DocumentValidationResult;
+import gov.samhsa.mhc.documentvalidator.service.dto.DocumentValidationResult;
 import org.xml.sax.SAXException;
 
 import java.io.InputStream;

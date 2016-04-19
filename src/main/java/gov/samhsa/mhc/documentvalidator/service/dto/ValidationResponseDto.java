@@ -3,20 +3,18 @@
  */
 package gov.samhsa.mhc.documentvalidator.service.dto;
 
-import gov.samhsa.mhc.documentvalidator.service.DocumentValidationResult;
-
 import java.util.List;
 
 public class ValidationResponseDto {
     private ValidationResultsMetaData resultsMetaData;
-    private List<DocumentValidationResult> validationResults;
+    private List<DocumentValidationResult> validationDetails;
 
     public List<DocumentValidationResult> getValidationDetails() {
-        return validationResults;
+        return validationDetails;
     }
 
     public void setValidationDetails(List<DocumentValidationResult> validationDetails) {
-        this.validationResults = validationDetails;
+        this.validationDetails = validationDetails;
     }
 
     public ValidationResultsMetaData getResultsMetaData() {

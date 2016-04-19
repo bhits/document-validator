@@ -3,8 +3,8 @@
  */
 package gov.samhsa.mhc.documentvalidator.service.validators;
 
-import gov.samhsa.mhc.documentvalidator.service.DiagnosticType;
-import gov.samhsa.mhc.documentvalidator.service.DocumentValidationResult;
+import gov.samhsa.mhc.documentvalidator.service.dto.DiagnosticType;
+import gov.samhsa.mhc.documentvalidator.service.dto.DocumentValidationResult;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.openhealthtools.mdht.uml.cda.consol.ConsolPackage;
 import org.openhealthtools.mdht.uml.cda.util.CDADiagnostic;

@@ -3,6 +3,7 @@
  */
 package gov.samhsa.mhc.documentvalidator.service;
 
+import gov.samhsa.mhc.documentvalidator.service.dto.DocumentValidationResult;
 import gov.samhsa.mhc.documentvalidator.service.dto.ValidationRequestDto;
 import gov.samhsa.mhc.documentvalidator.service.dto.ValidationResponseDto;
 import gov.samhsa.mhc.documentvalidator.service.dto.ValidationResultsMetaData;

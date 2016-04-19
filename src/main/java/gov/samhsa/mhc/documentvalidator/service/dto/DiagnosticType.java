@@ -1,7 +1,7 @@
 /**
  * Created by Jiahao.Li on 4/16/2016.
  */
-package gov.samhsa.mhc.documentvalidator.service;
+package gov.samhsa.mhc.documentvalidator.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
