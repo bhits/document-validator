@@ -2,11 +2,11 @@ package gov.samhsa.mhc.documentvalidator.service.dto;
 
 public class ResultMetaData {
     private String type;
-    private int count;
+    private int total;
 
-    public ResultMetaData(String type, int count) {
+    public ResultMetaData(String type, int total) {
         this.type = type;
-        this.count = count;
+        this.total = total;
     }
 
     public String getType() {
@@ -17,12 +17,12 @@ public class ResultMetaData {
         this.type = type;
     }
 
-    public int getCount() {
-        return count;
+    public int getTotal() {
+        return total;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     @Override

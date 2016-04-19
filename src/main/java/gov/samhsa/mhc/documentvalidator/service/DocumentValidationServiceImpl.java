@@ -41,7 +41,7 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
             throw new RuntimeException("Error getting CCDA contents from provided file", e);
         }
         responseDto.setResultsMetaData(resultsMetaData);
-        responseDto.setCcdaValidationResults(validatorResults);
+        responseDto.setValidationDetails(validatorResults);
         return responseDto;
     }
 

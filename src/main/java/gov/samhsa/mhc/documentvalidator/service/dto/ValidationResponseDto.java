@@ -11,12 +11,12 @@ public class ValidationResponseDto {
     private ValidationResultsMetaData resultsMetaData;
     private List<DocumentValidationResult> validationResults;
 
-    public List<DocumentValidationResult> getCcdaValidationResults() {
+    public List<DocumentValidationResult> getValidationDetails() {
         return validationResults;
     }
 
-    public void setCcdaValidationResults(List<DocumentValidationResult> ccdaValidationResults) {
-        this.validationResults = ccdaValidationResults;
+    public void setValidationDetails(List<DocumentValidationResult> validationDetails) {
+        this.validationResults = validationDetails;
     }
 
     public ValidationResultsMetaData getResultsMetaData() {
