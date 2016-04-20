@@ -1,5 +1,7 @@
 package gov.samhsa.mhc.documentvalidator.service.validators;
 
+import gov.samhsa.mhc.common.log.Logger;
+import gov.samhsa.mhc.common.log.LoggerFactory;
 import gov.samhsa.mhc.documentvalidator.service.dto.DiagnosticType;
 import gov.samhsa.mhc.documentvalidator.service.dto.DocumentValidationResult;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -8,7 +10,6 @@ import org.openhealthtools.mdht.uml.cda.util.CDADiagnostic;
 import org.openhealthtools.mdht.uml.cda.util.CDAUtil;
 import org.openhealthtools.mdht.uml.cda.util.ValidationResult;
 import org.springframework.stereotype.Service;
-import org.xml.sax.SAXException;
 
 import javax.annotation.PostConstruct;
 import java.io.InputStream;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class CCDAValidatorImpl implements CCDAValidator {
+    private Logger logger = LoggerFactory.getLogger(this);
 
     @PostConstruct
     public void buildStaticPackageRegistration() {
@@ -24,7 +26,7 @@ public class CCDAValidatorImpl implements CCDAValidator {
     }
 
     @Override
-    public ArrayList<DocumentValidationResult> validateCCDA(InputStream ccdaFile) throws SAXException {
+    public ArrayList<DocumentValidationResult> validateCCDA(InputStream ccdaFile) throws Exception {
 
         // validate on load
         // create validation result to hold diagnostics
@@ -33,7 +35,8 @@ public class CCDAValidatorImpl implements CCDAValidator {
         try {
             CDAUtil.load(ccdaFile, result);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info(() -> "Load validation failed: " + e.getMessage());
+            logger.debug(e::getMessage, e);
         }
         return processValidationResults(result);
     }

@@ -4,12 +4,11 @@
 package gov.samhsa.mhc.documentvalidator.service.validators;
 
 import gov.samhsa.mhc.documentvalidator.service.dto.DocumentValidationResult;
-import org.xml.sax.SAXException;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 
 public interface CCDAValidator {
-    ArrayList<DocumentValidationResult> validateCCDA(InputStream ccdaFile) throws SAXException;
+    ArrayList<DocumentValidationResult> validateCCDA(InputStream ccdaFile) throws Exception;
 }
 
