@@ -12,7 +12,7 @@ public enum DiagnosticType {
 
     private String errorTypeName;
 
-    private DiagnosticType(String type) {
+    DiagnosticType(String type) {
         errorTypeName = type;
     }
 
@@ -20,9 +20,4 @@ public enum DiagnosticType {
     public String getTypeName() {
         return errorTypeName;
     }
-
-    public String getValidationResultType() {
-        return name();
-    }
-
 }

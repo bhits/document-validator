@@ -31,16 +31,14 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
     @Override
     public ValidationResponseDto validateDocument(ValidationRequestDto requestDto) {
         ValidationResponseDto responseDto = new ValidationResponseDto();
-        ValidationResultsMetaData resultsMetaData;
         List<DocumentValidationResult> validatorResults;
         try {
             validatorResults = runValidators(requestDto);
-            resultsMetaData = buildValidationMedata(validatorResults);
         } catch (SAXException e) {
             //TODO
             throw new RuntimeException("Error getting CCDA contents from provided file", e);
         }
-        responseDto.setResultsMetaData(resultsMetaData);
+        responseDto.setValidationSummary(buildValidationMedata(validatorResults).getValidationSummary());
         responseDto.setValidationDetails(validatorResults);
         return responseDto;
     }

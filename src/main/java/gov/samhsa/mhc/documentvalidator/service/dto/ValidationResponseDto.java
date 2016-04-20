@@ -4,10 +4,20 @@
 package gov.samhsa.mhc.documentvalidator.service.dto;
 
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ValidationResponseDto {
-    private ValidationResultsMetaData resultsMetaData;
+    private Map<String, AtomicInteger> validationSummary;
     private List<DocumentValidationResult> validationDetails;
+
+    public void setValidationSummary(Map<String, AtomicInteger> validationSummary) {
+        this.validationSummary = validationSummary;
+    }
+
+    public Map<String, AtomicInteger> getValidationSummary() {
+        return validationSummary;
+    }
 
     public List<DocumentValidationResult> getValidationDetails() {
         return validationDetails;
@@ -15,13 +25,5 @@ public class ValidationResponseDto {
 
     public void setValidationDetails(List<DocumentValidationResult> validationDetails) {
         this.validationDetails = validationDetails;
-    }
-
-    public ValidationResultsMetaData getResultsMetaData() {
-        return resultsMetaData;
-    }
-
-    public void setResultsMetaData(ValidationResultsMetaData resultsMetaData) {
-        this.resultsMetaData = resultsMetaData;
     }
 }
