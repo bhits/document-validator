@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class CCDAValidatorImpl implements CCDAValidator {
-    public static final Charset DEFAULT_ENCODING = StandardCharsets.UTF_8;
+    private static final Charset DEFAULT_ENCODING = StandardCharsets.UTF_8;
     private Logger logger = LoggerFactory.getLogger(this);
 
     @PostConstruct
