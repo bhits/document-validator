@@ -5,10 +5,10 @@ package gov.samhsa.mhc.documentvalidator.service.validators;
 
 import gov.samhsa.mhc.documentvalidator.service.dto.DocumentValidationResult;
 
-import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public interface CCDAValidator {
-    ArrayList<DocumentValidationResult> validateCCDA(InputStream ccdaFile) throws Exception;
+    ArrayList<DocumentValidationResult> validateCCDA(byte[] ccdaFile, Optional<String> documentEncoding) throws Exception;
 }
 

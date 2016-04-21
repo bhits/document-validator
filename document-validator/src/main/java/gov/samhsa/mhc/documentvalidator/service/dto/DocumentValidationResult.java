@@ -5,13 +5,24 @@ package gov.samhsa.mhc.documentvalidator.service.dto;
 
 public class DocumentValidationResult {
 
-    private String message;
-    private int code;
     private DiagnosticType type;
+    private String message;
+    private String xPath;
+    private String documentLineNumber;
 
-    public DocumentValidationResult(String message, int code, DiagnosticType type) {
+    public DocumentValidationResult(DiagnosticType type, String message, String xPath,
+                                    String documentLineNumber) {
+        this.type = type;
         this.message = message;
-        this.code = code;
+        this.xPath = xPath;
+        this.documentLineNumber = documentLineNumber;
+    }
+
+    public DiagnosticType getType() {
+        return type;
+    }
+
+    public void setType(DiagnosticType type) {
         this.type = type;
     }
 
@@ -23,19 +34,19 @@ public class DocumentValidationResult {
         this.message = message;
     }
 
-    public int getCode() {
-        return code;
+    public String getxPath() {
+        return xPath;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setxPath(String xPath) {
+        this.xPath = xPath;
     }
 
-    public DiagnosticType getType() {
-        return type;
+    public String getDocumentLineNumber() {
+        return documentLineNumber;
     }
 
-    public void setType(DiagnosticType type) {
-        this.type = type;
+    public void setDocumentLineNumber(String documentLineNumber) {
+        this.documentLineNumber = documentLineNumber;
     }
 }

@@ -14,8 +14,6 @@ import gov.samhsa.mhc.documentvalidator.service.validators.CCDAValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,8 +48,7 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
 
     private List<DocumentValidationResult> runValidators(ValidationRequestDto requestDto) throws Exception {
         List<DocumentValidationResult> validatorResults = new ArrayList<>();
-        InputStream documentFileContents = new ByteArrayInputStream(requestDto.getDocument());
-        validatorResults.addAll(ccdaValidator.validateCCDA(documentFileContents));
+        validatorResults.addAll(ccdaValidator.validateCCDA(requestDto.getDocument(), requestDto.getDocumentEncoding()));
         return validatorResults;
     }
 
