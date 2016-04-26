@@ -4,19 +4,17 @@
 package gov.samhsa.mhc.documentvalidator.service.dto;
 
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class ValidationResponseDto {
-    private Map<String, AtomicInteger> validationSummary;
+    private DocumentValidationSummary validationSummary;
     private List<DocumentValidationResult> validationDetails;
 
-    public void setValidationSummary(Map<String, AtomicInteger> validationSummary) {
-        this.validationSummary = validationSummary;
+    public DocumentValidationSummary getValidationSummary() {
+        return validationSummary;
     }
 
-    public Map<String, AtomicInteger> getValidationSummary() {
-        return validationSummary;
+    public void setValidationSummary(DocumentValidationSummary validationSummary) {
+        this.validationSummary = validationSummary;
     }
 
     public List<DocumentValidationResult> getValidationDetails() {

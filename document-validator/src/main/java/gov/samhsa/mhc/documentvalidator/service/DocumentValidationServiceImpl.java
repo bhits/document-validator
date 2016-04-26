@@ -5,10 +5,7 @@ package gov.samhsa.mhc.documentvalidator.service;
 
 import gov.samhsa.mhc.common.log.Logger;
 import gov.samhsa.mhc.common.log.LoggerFactory;
-import gov.samhsa.mhc.documentvalidator.service.dto.DocumentValidationResult;
-import gov.samhsa.mhc.documentvalidator.service.dto.ValidationRequestDto;
-import gov.samhsa.mhc.documentvalidator.service.dto.ValidationResponseDto;
-import gov.samhsa.mhc.documentvalidator.service.dto.ValidationResultsMetaData;
+import gov.samhsa.mhc.documentvalidator.service.dto.*;
 import gov.samhsa.mhc.documentvalidator.service.exception.ValidationFailedException;
 import gov.samhsa.mhc.documentvalidator.service.validators.CCDAValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class DocumentValidationServiceImpl implements DocumentValidationService {
@@ -35,8 +34,9 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
         ValidationResponseDto responseDto = new ValidationResponseDto();
         List<DocumentValidationResult> validatorResults;
         try {
-            validatorResults = runValidators(requestDto);
-            responseDto.setValidationSummary(buildValidationMedata(validatorResults).getValidationSummary());
+            validatorResults = runValidator(requestDto);
+            DocumentValidationSummary validationSummary = buildValidationSummary(validatorResults);
+            responseDto.setValidationSummary(validationSummary);
             responseDto.setValidationDetails(validatorResults);
             return responseDto;
         } catch (Exception e) {
@@ -46,7 +46,7 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
         }
     }
 
-    private List<DocumentValidationResult> runValidators(ValidationRequestDto requestDto) throws Exception {
+    private List<DocumentValidationResult> runValidator(ValidationRequestDto requestDto) throws Exception {
         List<DocumentValidationResult> validatorResults = new ArrayList<>();
         validatorResults.addAll(ccdaValidator.validateCCDA(requestDto.getDocument(), requestDto.getDocumentEncoding()));
         return validatorResults;
@@ -58,5 +58,16 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
             resultsMetaData.addCount(result.getType());
         }
         return resultsMetaData;
+    }
+
+    private DocumentValidationSummary buildValidationSummary(List<DocumentValidationResult> validatorResults) {
+        Map<String, AtomicInteger> validationSummaryMap = buildValidationMedata(validatorResults).getValidationSummaryMap();
+
+        String validatorType = "R2";
+        String documentType = "C-CDA";
+        int error = validationSummaryMap.get(DiagnosticType.CCDA_ERROR.getTypeName()).intValue();
+        int warning = validationSummaryMap.get(DiagnosticType.CCDA_WARN.getTypeName()).intValue();
+        int info = validationSummaryMap.get(DiagnosticType.CCDA_INFO.getTypeName()).intValue();
+        return new DocumentValidationSummary(validatorType, documentType, error, warning, info);
     }
 }

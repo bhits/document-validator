@@ -5,23 +5,23 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ValidationResultsMetaData {
-    private final Map<String, AtomicInteger> validationSummary = new LinkedHashMap<>();
+    private final Map<String, AtomicInteger> validationSummaryMap = new LinkedHashMap<>();
 
     public ValidationResultsMetaData() {
         for (DiagnosticType diagnosticType : DiagnosticType.values()) {
-            validationSummary.put(diagnosticType.getTypeName(), new AtomicInteger(0));
+            validationSummaryMap.put(diagnosticType.getTypeName(), new AtomicInteger(0));
         }
     }
 
-    public Map<String, AtomicInteger> getValidationSummary() {
-        return validationSummary;
+    public Map<String, AtomicInteger> getValidationSummaryMap() {
+        return validationSummaryMap;
     }
 
     public void addCount(DiagnosticType diagnosticType) {
-        if (validationSummary.containsKey(diagnosticType.getTypeName())) {
-            validationSummary.get(diagnosticType.getTypeName()).addAndGet(1);
+        if (validationSummaryMap.containsKey(diagnosticType.getTypeName())) {
+            validationSummaryMap.get(diagnosticType.getTypeName()).addAndGet(1);
         } else {
-            validationSummary.put(diagnosticType.getTypeName(), new AtomicInteger(1));
+            validationSummaryMap.put(diagnosticType.getTypeName(), new AtomicInteger(1));
         }
     }
 }
