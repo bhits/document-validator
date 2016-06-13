@@ -51,6 +51,7 @@
         <fasterxml.version>2.5.3</fasterxml.version>
         <!-- MDHT core library versions -->
         <mdht.version>2.5.19.201603232017</mdht.version>
+        <docker.maven.version>0.4.3</docker.maven.version>
     </properties>
 
     <dependencies>
@@ -225,6 +226,25 @@
                 <version>2.4</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.maven.version}</version>
+                <configuration>
+                    <imageName>bhits/${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <buildArgs>
+                        <finalName>${project.build.finalName}.war</finalName>
+                    </buildArgs>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.war</include>
+                        </resource>
+                    </resources>
                 </configuration>
             </plugin>
         </plugins>
