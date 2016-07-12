@@ -9,6 +9,7 @@ import gov.samhsa.mhc.documentvalidator.service.dto.*;
 import gov.samhsa.mhc.documentvalidator.service.exception.ValidationFailedException;
 import gov.samhsa.mhc.documentvalidator.service.validators.CCDAValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,6 +21,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DocumentValidationServiceImpl implements DocumentValidationService {
 
     private Logger logger = LoggerFactory.getLogger(this);
+
+    @Value("${validator.version}")
+    private String validatorType;
 
     @Autowired
     private CCDAValidator ccdaValidator;
@@ -63,7 +67,6 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
     private DocumentValidationSummary buildValidationSummary(List<DocumentValidationResult> validatorResults) {
         Map<String, AtomicInteger> validationSummaryMap = buildValidationMedata(validatorResults).getValidationSummaryMap();
 
-        String validatorType = "R2";
         String documentType = "C-CDA";
         int error = validationSummaryMap.get(DiagnosticType.CCDA_ERROR.getTypeName()).intValue();
         int warning = validationSummaryMap.get(DiagnosticType.CCDA_WARN.getTypeName()).intValue();

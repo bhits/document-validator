@@ -4,11 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>gov.samhsa.mhc</groupId>
+    <groupId>gov.samhsa.c2s</groupId>
     <artifactId>document-validator</artifactId>
     <version>0.3.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <name>Document Validation API</name>
+
+    <!-- Validator ContextPath configuration -->
+    <!-- CCDA-R1 Please set contextPath to /documentValidator/r1 -->
+    <!-- CCDA-R2 Please set contextPath to /documentValidator/r2 -->
 
     <scm>
         <url>https://github.com/FEISystems/document-validator.git</url>
@@ -41,6 +45,12 @@
             <url>http://${maven.nexus.servername}/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
+
+    <modules>
+        <module>document-validator-core</module>
+        <module>document-validator-ccda-r1</module>
+        <module>document-validator-ccda-r2</module>
+    </modules>
 
     <properties>
         <java.version>1.8</java.version>
@@ -116,11 +126,14 @@
         </dependency>
 
         <!-- START MDHT Dependencies -->
+        <!-- Note: The version of CCDA document that is validated based on this dependency -->
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
             <version>2.5.8.20160323</version>
+            <scope>provided</scope>
         </dependency>
+        <!--Note End-->
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
@@ -209,44 +222,13 @@
         <!-- END  MDHT Dependencies -->
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>${docker.maven.version}</version>
-                <configuration>
-                    <imageName>bhits/${project.artifactId}</imageName>
-                    <dockerDirectory>src/main/docker</dockerDirectory>
-                    <buildArgs>
-                        <finalName>${project.build.finalName}.war</finalName>
-                    </buildArgs>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.war</include>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>gov.samhsa.c2s</groupId>
+                <artifactId>document-validator-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
