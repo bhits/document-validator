@@ -1,4 +1,4 @@
-package gov.samhsa.mhc.documentvalidator.service.dto;
+package gov.samhsa.c2s.documentvalidator.service.dto;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

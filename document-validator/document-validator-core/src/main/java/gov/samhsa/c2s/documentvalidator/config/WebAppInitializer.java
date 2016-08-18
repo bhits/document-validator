@@ -1,4 +1,4 @@
-package gov.samhsa.mhc.documentvalidator.config;
+package gov.samhsa.c2s.documentvalidator.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

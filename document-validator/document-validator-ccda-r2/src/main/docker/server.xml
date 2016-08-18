@@ -82,7 +82,7 @@
          documentation -->
     
     <Connector port="8443" protocol="org.apache.coyote.http11.Http11Protocol"
-               keystoreFile="/java/keystore/mhc.keystore" keystorePass="changeit"
+               keystoreFile="/java/keystore/c2s.keystore" keystorePass="changeit"
 			   maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
                clientAuth="false" sslProtocol="TLS" />
     

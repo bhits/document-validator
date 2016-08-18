@@ -1,7 +1,7 @@
 /**
  * Created by Jiahao.Li on 4/16/2016.
  */
-package gov.samhsa.mhc.documentvalidator.service.dto;
+package gov.samhsa.c2s.documentvalidator.service.dto;
 
 public class DocumentValidationResult {
 

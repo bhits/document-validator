@@ -1,13 +1,13 @@
 /**
  * Created by Jiahao.Li on 4/16/2016.
  */
-package gov.samhsa.mhc.documentvalidator.service;
+package gov.samhsa.c2s.documentvalidator.service;
 
+import gov.samhsa.c2s.documentvalidator.service.dto.*;
 import gov.samhsa.mhc.common.log.Logger;
 import gov.samhsa.mhc.common.log.LoggerFactory;
-import gov.samhsa.mhc.documentvalidator.service.dto.*;
-import gov.samhsa.mhc.documentvalidator.service.exception.ValidationFailedException;
-import gov.samhsa.mhc.documentvalidator.service.validators.CCDAValidator;
+import gov.samhsa.c2s.documentvalidator.service.exception.ValidationFailedException;
+import gov.samhsa.c2s.documentvalidator.service.validators.CCDAValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

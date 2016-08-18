@@ -1,4 +1,4 @@
-package gov.samhsa.mhc.documentvalidator.service.exception;
+package gov.samhsa.c2s.documentvalidator.service.exception;
 
 /**
  * Created by Jiahao.Li on 4/20/2016.

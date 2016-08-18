@@ -1,9 +1,9 @@
 /**
  * Created by jiahao.li on 4/14/2016.
  */
-package gov.samhsa.mhc.documentvalidator.service.validators;
+package gov.samhsa.c2s.documentvalidator.service.validators;
 
-import gov.samhsa.mhc.documentvalidator.service.dto.DocumentValidationResult;
+import gov.samhsa.c2s.documentvalidator.service.dto.DocumentValidationResult;
 
 import java.util.ArrayList;
 import java.util.Optional;

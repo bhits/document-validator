@@ -1,11 +1,11 @@
 /**
  * Created by jiahao.li on 4/12/2016.
  */
-package gov.samhsa.mhc.documentvalidator.web;
+package gov.samhsa.c2s.documentvalidator.web;
 
-import gov.samhsa.mhc.documentvalidator.service.DocumentValidationService;
-import gov.samhsa.mhc.documentvalidator.service.dto.ValidationRequestDto;
-import gov.samhsa.mhc.documentvalidator.service.dto.ValidationResponseDto;
+import gov.samhsa.c2s.documentvalidator.service.dto.ValidationRequestDto;
+import gov.samhsa.c2s.documentvalidator.service.dto.ValidationResponseDto;
+import gov.samhsa.c2s.documentvalidator.service.DocumentValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
