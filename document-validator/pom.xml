@@ -55,7 +55,7 @@
     <properties>
         <java.version>1.8</java.version>
         <spring.version>4.2.1.RELEASE</spring.version>
-        <mhc-common-libraries.version>1.2.0</mhc-common-libraries.version>
+        <c2s-common-libraries.version>1.5.0</c2s-common-libraries.version>
         <javax.servlet.version>3.1.0</javax.servlet.version>
         <javax.validation.version>1.1.0.Final</javax.validation.version>
         <fasterxml.version>2.5.3</fasterxml.version>
@@ -66,9 +66,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>gov.samhsa.mhc</groupId>
+            <groupId>gov.samhsa.c2s</groupId>
             <artifactId>logger-wrapper</artifactId>
-            <version>${mhc-common-libraries.version}</version>
+            <version>${c2s-common-libraries.version}</version>
         </dependency>
 
         <dependency>

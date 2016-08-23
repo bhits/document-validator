@@ -4,8 +4,8 @@
 package gov.samhsa.c2s.documentvalidator.service;
 
 import gov.samhsa.c2s.documentvalidator.service.dto.*;
-import gov.samhsa.mhc.common.log.Logger;
-import gov.samhsa.mhc.common.log.LoggerFactory;
+import gov.samhsa.c2s.common.log.Logger;
+import gov.samhsa.c2s.common.log.LoggerFactory;
 import gov.samhsa.c2s.documentvalidator.service.exception.ValidationFailedException;
 import gov.samhsa.c2s.documentvalidator.service.validators.CCDAValidator;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package gov.samhsa.c2s.documentvalidator.service.validators;
 
 import gov.samhsa.c2s.documentvalidator.service.dto.DiagnosticType;
-import gov.samhsa.mhc.common.log.Logger;
-import gov.samhsa.mhc.common.log.LoggerFactory;
+import gov.samhsa.c2s.common.log.Logger;
+import gov.samhsa.c2s.common.log.LoggerFactory;
 import gov.samhsa.c2s.documentvalidator.service.dto.DocumentValidationResult;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
