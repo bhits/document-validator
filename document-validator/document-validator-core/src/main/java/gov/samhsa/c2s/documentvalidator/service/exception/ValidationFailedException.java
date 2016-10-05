@@ -1,8 +1,5 @@
 package gov.samhsa.c2s.documentvalidator.service.exception;
 
-/**
- * Created by Jiahao.Li on 4/20/2016.
- */
 public class ValidationFailedException extends RuntimeException{
     public ValidationFailedException() {
         super();
