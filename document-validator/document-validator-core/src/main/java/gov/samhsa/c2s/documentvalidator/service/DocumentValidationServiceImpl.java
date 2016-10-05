@@ -3,9 +3,9 @@
  */
 package gov.samhsa.c2s.documentvalidator.service;
 
-import gov.samhsa.c2s.documentvalidator.service.dto.*;
 import gov.samhsa.c2s.common.log.Logger;
 import gov.samhsa.c2s.common.log.LoggerFactory;
+import gov.samhsa.c2s.documentvalidator.service.dto.*;
 import gov.samhsa.c2s.documentvalidator.service.exception.ValidationFailedException;
 import gov.samhsa.c2s.documentvalidator.service.validators.CCDAValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class DocumentValidationServiceImpl implements DocumentValidationService {
 
-    private Logger logger = LoggerFactory.getLogger(this);
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Value("${validator.version}")
     private String validatorType;
