@@ -1,6 +1,3 @@
-/**
- * Created by jiahao.li on 4/14/2016.
- */
 package gov.samhsa.c2s.documentvalidator.service.validators;
 
 import gov.samhsa.c2s.documentvalidator.service.dto.DocumentValidationResult;

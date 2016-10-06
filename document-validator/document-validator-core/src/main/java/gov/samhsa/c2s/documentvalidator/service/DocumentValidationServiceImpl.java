@@ -1,6 +1,3 @@
-/**
- * Created by Jiahao.Li on 4/16/2016.
- */
 package gov.samhsa.c2s.documentvalidator.service;
 
 import gov.samhsa.c2s.common.log.Logger;
