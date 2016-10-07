@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <name>document-validator</name>
     <description>Document Validation API</description>
-    <url>${scm.url}</url>
+    <url>${project.scm.url}</url>
     <modelVersion>4.0.0</modelVersion>
 
     <organization>
@@ -23,7 +23,7 @@
     <licenses>
         <license>
             <name>See license in LICENSE.md</name>
-            <url>${scm.url}/blob/master/LICENSE.md</url>
+            <url>${project.scm.url}/blob/master/LICENSE.md</url>
         </license>
     </licenses>
 
@@ -39,8 +39,8 @@
 
     <scm>
         <url>https://github.com/BHITS/document-validator</url>
-        <connection>scm:git:${scm.url}.git</connection>
-        <developerConnection>scm:git:${scm.url}.git</developerConnection>
+        <connection>scm:git:${project.scm.url}.git</connection>
+        <developerConnection>scm:git:${project.scm.url}.git</developerConnection>
     </scm>
 
     <distributionManagement>
