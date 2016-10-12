@@ -72,9 +72,11 @@
         <!-- MDHT core library versions -->
         <mdht.version>2.5.19.201603232017</mdht.version>
         <docker.maven.version>0.4.3</docker.maven.version>
+        <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>gov.samhsa.c2s</groupId>
             <artifactId>logger-wrapper</artifactId>
@@ -109,6 +111,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate.validator.version}</version>
         </dependency>
 
         <dependency>
