@@ -40,7 +40,6 @@ For easy deployment:
 
 Please refer to [Tomcat Web Application Deployment](http://tomcat.apache.org/tomcat-8.0-doc/deployer-howto.html) documentation for more details about Tomcat deployment.
 
-### Examples for Overriding a Configuration in Spring Boot
 
 #### Override a Configuration Using Program Arguments While Running as a Docker Container for document-validator-ccda-r1:
 
@@ -93,7 +92,7 @@ services:
            protocol="org.apache.coyote.http11.Http11NioProtocol"
            port="8443" maxThreads="200"
            scheme="https" secure="true" SSLEnabled="true"
-           keystoreFile="/ssl_keystore.keystore" keystorePass="changeit"
+           keystoreFile="/ssl_keystore.keystore" keystorePass="strongpassword"
            clientAuth="false" sslProtocol="TLS"/>
 ...
 ```
