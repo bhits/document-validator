@@ -1,6 +1,6 @@
 # Document Validator  API
 
-Document Validator API is responsible for validating CCDA R1 OR R2 clinical documents. It is a Web Service wrapper around [MDHT](https://www.projects.openhealthtools.org/sf/projects/mdht/) (Model Driven Health Tools) library. It does schermatron and schema validation for CCDA R1 and R2 and only 0scherma validation for C32. Document Validator API is used directly by [DSS](https://github.com/FEISystems/dss-api/tree/dev) (Document Segmentation Service) to validate the document before and after segmentation.
+Document Validator API is responsible for validating CCDA R1 OR R2 clinical documents. It is a Web Service wrapper around [MDHT](https://www.projects.openhealthtools.org/sf/projects/mdht/) (Model Driven Health Tools) library. It does schermatron and schema validation for CCDA R1 and R2 and only scherma validation for C32. Document Validator API is used directly by [DSS](https://github.com/FEISystems/dss-api/tree/dev) (Document Segmentation Service) to validate the document before and after segmentation.
 
 ## Build
 
@@ -27,7 +27,7 @@ To build the project, navigate to the folder that contains the [**parent** `pom.
 
 ### Commands
 
-This API is a [Spring MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html) project that requires a separate application server to run it. [Apache Tomcat 8](http://tomcat.apache.org/) is the recommended application server to run this API. The expected default context path for this API are `/documentValidator/r1` and `/documentValidator/r2`.
+This API is a [Spring MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html) project that requires a separate application server to run it. [Apache Tomcat 8](http://tomcat.apache.org/) is the recommended application server to run this API. The expected default context path for this API are `/documentValidator/r1` for CCDA-R1 and `/documentValidator/r2` for CCDA-R2.
 
 ### Deployment
 
