@@ -1,6 +1,6 @@
 # Document Validator  API
 
-Document Validator API is responsible for validating CCDA R1 OR R2 clinical documents. It is a Web Service wrapper around [MDHT](https://www.projects.openhealthtools.org/sf/projects/mdht/) (Model Driven Health Tools) library. It does schermatron and schema validation for CCDA R1 and R2 and only scherma validation for C32. Document Validator API is used directly by [DSS](https://github.com/FEISystems/dss-api/tree/dev) (Document Segmentation Service) to validate the document before and after segmentation.
+Document Validator API is responsible for validating CCDA R1 OR R2 clinical documents. It is a Web Service wrapper around [MDHT](https://www.projects.openhealthtools.org/sf/projects/mdht/) (Model Driven Health Tools) library. It does schematron and schema validation for CCDA R1 and R2 and only schema validation for C32. Document Validator API is used directly by [DSS](https://github.com/FEISystems/dss-api/tree/dev) (Document Segmentation Service) to validate the document before and after segmentation.
 
 ## Build
 
