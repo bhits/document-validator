@@ -1,6 +1,3 @@
-/**
- * Created by jiahao.li on 4/25/2016.
- */
 package gov.samhsa.c2s.documentvalidator.service.dto;
 
 public class DocumentValidationSummary {

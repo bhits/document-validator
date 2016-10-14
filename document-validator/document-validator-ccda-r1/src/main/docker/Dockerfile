@@ -1,4 +1,4 @@
 FROM tomcat:8-jre8
-ADD server.xml /usr/local/tomcat/conf/
+# Copy war to container, argument is defined in pom.xml
 ARG finalName
-ADD $finalName /usr/local/tomcat/webapps/document-validator-ccda-r1.war
+COPY $finalName /usr/local/tomcat/webapps/documentValidator.war

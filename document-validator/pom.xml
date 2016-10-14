@@ -2,36 +2,46 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <name>document-validator</name>
+    <description>Document Validation API</description>
+    <url>${project.scm.url}</url>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>gov.samhsa.c2s</groupId>
-    <artifactId>document-validator</artifactId>
-    <version>0.7.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>Document Validation API</name>
-
-    <!-- Validator ContextPath configuration -->
-    <!-- CCDA-R1 Please set contextPath to /documentValidator/r1 -->
-    <!-- CCDA-R2 Please set contextPath to /documentValidator/r2 -->
-
-    <scm>
-        <url>https://github.com/FEISystems/document-validator.git</url>
-        <connection>scm:git:https://github.com/FEISystems/document-validator.git</connection>
-        <developerConnection>scm:git:https://github.com/FEISystems/document-validator.git</developerConnection>
-    </scm>
+    <organization>
+        <name>SAMHSA</name>
+        <url>http://www.samhsa.gov/</url>
+    </organization>
 
     <developers>
         <developer>
-            <id>Bhits.Java</id>
-            <name>Bhits Java</name>
-            <email>Bhits.Java@feisystems.com</email>
+            <id>BHITS Team</id>
+            <name>BHITS Team</name>
             <organization>FEi Systems</organization>
-            <roles>
-                <role>developer</role>
-            </roles>
-            <timezone>-5</timezone>
         </developer>
     </developers>
+
+    <licenses>
+        <license>
+            <name>See license in LICENSE.md</name>
+            <url>${project.scm.url}/blob/master/LICENSE.md</url>
+        </license>
+    </licenses>
+
+    <groupId>gov.samhsa.c2s</groupId>
+    <artifactId>document-validator</artifactId>
+    <version>0.8.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <ciManagement>
+        <system>CI</system>
+        <url>http://BhitsBuild03/</url>
+    </ciManagement>
+
+    <scm>
+        <url>https://github.com/BHITS/document-validator</url>
+        <connection>scm:git:${project.scm.url}.git</connection>
+        <developerConnection>scm:git:${project.scm.url}.git</developerConnection>
+    </scm>
 
     <distributionManagement>
         <repository>
@@ -62,9 +72,11 @@
         <!-- MDHT core library versions -->
         <mdht.version>2.5.19.201603232017</mdht.version>
         <docker.maven.version>0.4.3</docker.maven.version>
+        <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>gov.samhsa.c2s</groupId>
             <artifactId>logger-wrapper</artifactId>
@@ -102,6 +114,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate.validator.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${fasterxml.version}</version>
@@ -126,14 +144,12 @@
         </dependency>
 
         <!-- START MDHT Dependencies -->
-        <!-- Note: The version of CCDA document that is validated based on this dependency -->
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
             <version>2.5.8.20160323</version>
             <scope>provided</scope>
         </dependency>
-        <!--Note End-->
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
