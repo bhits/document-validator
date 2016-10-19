@@ -1,6 +1,6 @@
 # Document Validator  API
 
-Document Validator API is responsible for validating CCDA R1 OR R2 clinical documents. It is a Web Service wrapper around [MDHT](https://www.projects.openhealthtools.org/sf/projects/mdht/) (Model Driven Health Tools) library. It does schematron and schema validation for CCDA R1 and R2 and only schema validation for C32. Document Validator API is used directly by [DSS](https://github.com/FEISystems/dss-api/tree/dev) (Document Segmentation Service) to validate the document before and after segmentation.
+Document Validator API is responsible for validating C-CDA R1 and C-CDA R2 clinical documents. It is a RESTful Web Service wrapper around [MDHT](https://www.projects.openhealthtools.org/sf/projects/mdht/) (Model Driven Health Tools) libraries. It does both schema and schematron validation and returns the validation results from MDHT in the response. Document Validator API is used directly by [DSS](https://github.com/bhits/dss-api) (Document Segmentation Service) to validate the document before and after the segmentation.
 
 ## Build
 
@@ -8,6 +8,10 @@ Document Validator API is responsible for validating CCDA R1 OR R2 clinical docu
 
 + [Oracle Java JDK 8 with Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 + [Docker Engine](https://docs.docker.com/engine/installation/) (for building a Docker image from the project)
+
+### Structure
+
+This project contains a [**parent** `pom.xml` file](document-validator/pom.xml) that aggregates two web service projects. One of these web services is for C-CDA R1 and the other one is for C-CDA R2 validation.
 
 ### Commands
 
@@ -18,55 +22,34 @@ To build the project, navigate to the folder that contains the [**parent** `pom.
 + To build a JAR:
     + For Windows, run `mvnw.cmd clean install`
     + For *nix systems, run `mvnw clean install`
-+ To build a Docker Image (this will create an image with `bhits/document-validator:latest` tag):
-    + For Windows, run `mvnw.cmd clean install & cd web & ..\mvnw.cmd clean package docker:build & cd..`
-    + For *nix systems, run `mvnw clean install; cd ./web; ../mvnw clean package docker:build; cd ..`
-
++ To build a Docker Image (this will create two images with `bhits/document-validator-ccda-r1:latest` and `bhits/document-validator-ccda-r2:latest` tags):
+    + For Windows, run `mvnw.cmd clean install & cd document-validator-ccda-r1 & ..\mvnw.cmd clean package docker:build & cd.. & cd document-validator-ccda-r2 & ..\mvnw.cmd clean package docker:build & cd..`
+    + For *nix systems, run `mvnw clean install; cd ./document-validator-ccda-r1; ../mvnw clean package docker:build; cd ..; cd ./document-validator-ccda-r2; ../mvnw clean package docker:build; cd ..`
 
 ## Run
 
-### Commands
+### Prerequisites
 
-This API is a [Spring MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html) project that requires a separate application server to run it. [Apache Tomcat 8](http://tomcat.apache.org/) is the recommended application server to run this API. The expected default context path for this API are `/documentValidator/r1` for CCDA-R1 and `/documentValidator/r2` for CCDA-R2.
+These APIs are [Spring MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html) projects that require a separate application server to run it. [Apache Tomcat 8](http://tomcat.apache.org/) is the recommended application server to run these APIs. The expected default context paths for these APIs in a development (single application server) environment are `/documentValidator/r1` for C-CDA R1 and `/documentValidator/r2` for C-CDA R2 validators. In Docker environment, they both use the same `/documentValidator` context path.
 
 ### Deployment
 
-For easy deployment:
+For easy deployment in single application server environment:
 
 1. Find the `war` file located in `\document-validator\document-validator-ccda-r1\target` or `\document-validator\document-validator-ccda-r2\target` (for CCDA-R1 and CCDA-R2 respectfully) folder after building the project.
-2. Rename the file to `document-validator-ccda-r1.war` or `document-validator-ccda-r2.war` if it has a different name.
-3. Copy `document-validator-ccda-r1.war` or `document-validator-ccda-r2.war`to Tomcat's `webapps` folder
-5. Start up Tomcat.
+2. Rename the file to `documentValidator#r1.war` or `documentValidator#r2.war`
+3. Copy `documentValidator#r1.war` or `documentValidator#r2.war` to Tomcat's `webapps` folder
+4. Start up Tomcat.
 
 Please refer to [Tomcat Web Application Deployment](http://tomcat.apache.org/tomcat-8.0-doc/deployer-howto.html) documentation for more details about Tomcat deployment.
 
+## Configure
 
-#### Override a Configuration Using Program Arguments While Running as a Docker Container for document-validator-ccda-r1:
-
-+ `docker run -d bhits/document-validator-ccda-r1:latest --server.port=80 `
-
-+ In a `docker-compose.yml`, this can be provided as:
-```yml
-version: '2'
-services:
-...
-  document-validator-ccda-r1.c2s.com:
-    image: "bhits/document-validator-ccda-r1:latest"
-    command: ["--server.port=80"]
-...
-```
-
-*NOTE: Please note taht thesame applies for document-validator-ccda-r2.
-Also, these additional arguments will be appended to the default `ENTRYPOINT` specified in the `Dockerfile` unless the `ENTRYPOINT` is overridden.*
+These APIs are self-contained services and do not require any application configuration.
 
 ### Enable SSL
 
-For simplicity in development and testing environments, SSL is **NOT** enabled by default configuration. SSL can easily be enabled following the examples below:
-
-
 Please refer to [Apache Tomcat 8 SSL/TLS Configuration HOW-TO](https://tomcat.apache.org/tomcat-8.0-doc/ssl-howto.html) documentation for configuring SSL on Tomcat.
-
-#### Enable SSL While Running as a Docker Container
 
 In Docker environment, `$TOMCAT_HOME/conf/server.xml` can be overridden by mounting a volume as `"/path/on/dockerhost/server.xml:/usr/local/tomcat/conf/server.xml"`. The mounted `server.xml` file can refer to a keystore inside the container that can be separately mounted like `"/path/on/dockerhost/ssl_keystore.keystore:/ssl_keystore.keystore"`.
 
@@ -105,7 +88,6 @@ Java has a default CA Certificates Store that allows it to trust well-known cert
 
 [//]: # (## API Documentation)
 
-
 [//]: # (## Notes)
 
 [//]: # (## Contribute)
@@ -116,6 +98,6 @@ If you have any questions, comments, or concerns please see [Consent2Share]() pr
 
 ## Report Issues
 
-Please use [GitHub Issues](https://github.com/bhits/document-validator-api/issues) page to report issues.
+Please use [GitHub Issues](https://github.com/bhits/document-validator/issues) page to report issues.
 
 [//]: # (License)
