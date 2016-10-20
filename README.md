@@ -1,6 +1,6 @@
 # Document Validator  API
 
-Document Validator API is responsible for validating C-CDA R1 and C-CDA R2 clinical documents. It is a RESTful Web Service wrapper around [MDHT](https://www.projects.openhealthtools.org/sf/projects/mdht/) (Model Driven Health Tools) libraries. It does both schema and schematron validation and returns the validation results from MDHT in the response. Document Validator API is used directly by [DSS](https://github.com/bhits/dss-api) (Document Segmentation Service) to validate the document before and after the segmentation.
+The Document Validator API is responsible for validating C-CDA R1 and C-CDA R2 clinical documents. It is a RESTful Web Service wrapper around [MDHT](https://www.projects.openhealthtools.org/sf/projects/mdht/) (Model Driven Health Tools) libraries. It does both schema and schematron validation and returns the validation results from MDHT in the response. Document Validator API is used directly by [DSS](https://github.com/bhits/dss-api) (Document Segmentation Service) to validate the document before and after the segmentation.
 
 ## Build
 
@@ -15,7 +15,7 @@ This project contains a [**parent** `pom.xml` file](document-validator/pom.xml) 
 
 ### Commands
 
-This is a Maven project and requires [Apache Maven](https://maven.apache.org/) 3.3.3 or greater to build it. It is recommended to use the *Maven Wrapper* scripts provided with this project. *Maven Wrapper* requires internet connection to download Maven and project dependencies for the very first build.
+This is a Maven project and requires [Apache Maven](https://maven.apache.org/) 3.3.3 or greater to build it. It is recommended to use the *Maven Wrapper* scripts provided with this project. *Maven Wrapper* requires an internet connection to download Maven and the project dependencies for the very first build.
 
 To build the project, navigate to the folder that contains the [**parent** `pom.xml` file](document-validator/pom.xml) using terminal/command line.
 
@@ -51,9 +51,9 @@ These APIs are self-contained services and do not require any application config
 
 Please refer to [Apache Tomcat 8 SSL/TLS Configuration HOW-TO](https://tomcat.apache.org/tomcat-8.0-doc/ssl-howto.html) documentation for configuring SSL on Tomcat.
 
-In Docker environment, `$TOMCAT_HOME/conf/server.xml` can be overridden by mounting a volume as `"/path/on/dockerhost/server.xml:/usr/local/tomcat/conf/server.xml"`. The mounted `server.xml` file can refer to a keystore inside the container that can be separately mounted like `"/path/on/dockerhost/ssl_keystore.keystore:/ssl_keystore.keystore"`.
+In the Docker environment, `$TOMCAT_HOME/conf/server.xml` can be overridden by mounting a volume as `"/path/on/dockerhost/server.xml:/usr/local/tomcat/conf/server.xml"`. The mounted `server.xml` file can refer to a keystore inside the container that can be separately mounted like `"/path/on/dockerhost/ssl_keystore.keystore:/ssl_keystore.keystore"`.
 
-In a `docker-compose.yml`, this can be provided as:
+In `docker-compose.yml`, this can be provided as:
 
 ```yml
 version: '2'
