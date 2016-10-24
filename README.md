@@ -19,13 +19,6 @@ This is a Maven project and requires [Apache Maven](https://maven.apache.org/) 3
 
 To build the project, navigate to the folder that contains the [**parent** `pom.xml` file](document-validator/pom.xml) using terminal/command line.
 
-+ To build a JAR:
-    + For Windows, run `mvnw.cmd clean install`
-    + For *nix systems, run `mvnw clean install`
-+ To build a Docker Image (this will create two images with `bhits/document-validator-ccda-r1:latest` and `bhits/document-validator-ccda-r2:latest` tags):
-    + For Windows, run `mvnw.cmd clean install & cd document-validator-ccda-r1 & ..\mvnw.cmd clean package docker:build & cd.. & cd document-validator-ccda-r2 & ..\mvnw.cmd clean package docker:build & cd..`
-    + For *nix systems, run `mvnw clean install; cd ./document-validator-ccda-r1; ../mvnw clean package docker:build; cd ..; cd ./document-validator-ccda-r2; ../mvnw clean package docker:build; cd ..`
-
 + External Dependencies:
   MDHT dependencies are needed to build and run Document Validator correctly. Since the jars are not available in Maven central repository, they are provided and attached in the release page. The following jars (listed in the order of ${groupId}  | ${artifactId}  | ${version}  | ${jarName} ) need to be manually installed by the following command : mvn install:install-file -Dfile=${pathToJar}/${jarName}.jar -DgroupId=${groupId} -DartifactId=${artifactId} -Dversion=${version} -Dpackaging=jar
            
@@ -45,6 +38,13 @@ To build the project, navigate to the folder that contains the [**parent** `pom.
     + org.mdht.dependencies   | org.eclipse.uml2.common   | 1.8.2.v20140202-2055   | org.eclipse.uml2.common-1.8.2.v20140202-2055.jar
     + org.mdht.dependencies   | org.eclipse.uml2.types   | 1.1.0.v20140202-2055   | org.eclipse.uml2.types-1.1.0.v20140202-2055.jar
     + org.mdht.dependencies   | lpg.runtime.java   | 2.0.17.v201004271640   | lpg.runtime.java-2.0.17.v201004271640.jar    
+
++ To build a JAR:
+    + For Windows, run `mvnw.cmd clean install`
+    + For *nix systems, run `mvnw clean install`
++ To build a Docker Image (this will create two images with `bhits/document-validator-ccda-r1:latest` and `bhits/document-validator-ccda-r2:latest` tags):
+    + For Windows, run `mvnw.cmd clean install & cd document-validator-ccda-r1 & ..\mvnw.cmd clean package docker:build & cd.. & cd document-validator-ccda-r2 & ..\mvnw.cmd clean package docker:build & cd..`
+    + For *nix systems, run `mvnw clean install; cd ./document-validator-ccda-r1; ../mvnw clean package docker:build; cd ..; cd ./document-validator-ccda-r2; ../mvnw clean package docker:build; cd ..`
 
 ## Run
 
