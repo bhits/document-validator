@@ -26,6 +26,30 @@ To build the project, navigate to the folder that contains the [**parent** `pom.
     + For Windows, run `mvnw.cmd clean install & cd document-validator-ccda-r1 & ..\mvnw.cmd clean package docker:build & cd.. & cd document-validator-ccda-r2 & ..\mvnw.cmd clean package docker:build & cd..`
     + For *nix systems, run `mvnw clean install; cd ./document-validator-ccda-r1; ../mvnw clean package docker:build; cd ..; cd ./document-validator-ccda-r2; ../mvnw clean package docker:build; cd ..`
 
++ External Dependencies:
+  In order to build and run Document Validator correctly, MDHT dependencies are needed. Since those jars are not available in Maven central repository, the jars are included in the [release](). The following jars (laid out in order groupId, artifactId, version, jarName) need to be manually installed by the following command
+  
+    + Commend need to run
+       mvn install:install-file -Dfile={pathToJar}/{jarName}-{version}.jar -DgroupId={groupId} -DartifactId={artifactId} -Dversion={version} -Dpackaging=jar
+  
+    + MDHT common jar for both document-validator-ccda-r1 and document-validator-ccda-r2 (groupId, artifactId, version, jarName)
+      + org.mdht.dependencies, org.openhealthtools.mdht.uml.cda.consol, 2.5.8.20160323, org.openhealthtools.mdht.uml.cda.consol-2.5.8.20160323.jar
+      + org.mdht.dependencies, org.openhealthtools.mdht.uml.cda.consol2, 2.5.8.20160323, org.openhealthtools.mdht.uml.cda.consol2-2.5.8.20160323.jar
+      + org.mdht.dependencies, org.openhealthtools.mdht.uml.cda, 2.5.19.201603232017, org.openhealthtools.mdht.uml.cda-2.5.19.201603232017.jar
+      + org.mdht.dependencies, org.openhealthtools.mdht.emf.runtime, 2.5.19.201603232017, org.openhealthtools.mdht.emf.runtime-2.5.19.201603232017.jar
+      + org.mdht.dependencies, org.openhealthtools.mdht.uml.hl7.rim, 2.5.19.201603232017, org.openhealthtools.mdht.uml.hl7.rim-2.5.19.201603232017.jar
+      + org.mdht.dependencies, org.openhealthtools.mdht.uml.hl7.datatypes, 2.5.19.201603232017, org.openhealthtools.mdht.uml.hl7.datatypes-2.5.19.201603232017.jar
+      + org.mdht.dependencies, org.openhealthtools.mdht.uml.hl7.vocab, 2.5.19.201603232017, org.openhealthtools.mdht.uml.hl7.vocab-2.5.19.201603232017.jar
+      + org.mdht.dependencies, org.eclipse.emf.common, 2.9.2.v20131212-0545, org.eclipse.emf.common-2.9.2.v20131212-0545.jar
+      + org.mdht.dependencies, org.eclipse.emf.ecore, 2.9.2.v20131212-0545, org.eclipse.emf.ecore-2.9.2.v20131212-0545
+      + org.mdht.dependencies, org.eclipse.emf.ecore.xmi, 2.9.2.v20131212-0545, org.eclipse.emf.ecore.xmi-2.9.1.v20131212-0545.jar
+      + org.mdht.dependencies, org.eclipse.ocl, 3.3.0.v20140120-1508, org.eclipse.ocl-3.3.0.v20140120-1508.jar
+      + org.mdht.dependencies, org.eclipse.ocl.common, 1.1.0.v20130531-0544, org.eclipse.ocl.common-1.1.0.v20130531-0544.jar
+      + org.mdht.dependencies, org.eclipse.ocl.ecore, 3.3.0.v20130520-1222, org.eclipse.ocl.ecore-3.3.0.v20130520-1222.jar
+      + org.mdht.dependencies, org.eclipse.uml2.common, 1.8.2.v20140202-2055, org.eclipse.uml2.common-1.8.2.v20140202-2055.jar
+      + org.mdht.dependencies, org.eclipse.uml2.types, 1.1.0.v20140202-2055, org.eclipse.uml2.types-1.1.0.v20140202-2055.jar
+      + org.mdht.dependencies, lpg.runtime.java, 2.0.17.v201004271640, lpg.runtime.java-2.0.17.v201004271640.jar    
+
 ## Run
 
 ### Prerequisites
@@ -94,7 +118,7 @@ Java has a default CA Certificates Store that allows it to trust well-known cert
 
 ## Contact
 
-If you have any questions, comments, or concerns please see [Consent2Share]() project site.
+If you have any questions, comments, or concerns please see [Consent2Share](https://bhits.github.io/consent2share/) project site.
 
 ## Report Issues
 
