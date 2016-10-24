@@ -20,24 +20,24 @@ This is a Maven project and requires [Apache Maven](https://maven.apache.org/) 3
 To build the project, navigate to the folder that contains the [**parent** `pom.xml` file](document-validator/pom.xml) using terminal/command line.
 
 + External Dependencies:
-  MDHT dependencies are needed to build and run Document Validator correctly. Since the jars are not available in Maven central repository, they are provided and attached in the release page. The following jars (listed in the order of ${groupId}  | ${artifactId}  | ${version}  | ${jarName} ) need to be manually installed by the following command : mvn install:install-file -Dfile=${pathToJar}/${jarName}.jar -DgroupId=${groupId} -DartifactId=${artifactId} -Dversion=${version} -Dpackaging=jar
+  MDHT dependencies are needed to build and run Document Validator correctly. Since the jars are not available in Maven central repository, they are provided and attached in the release page. The following jars (listed in the order of ${artifactId}  | ${version}  | ${jarName} ) need to be manually installed by the following command : mvn install:install-file -Dfile=${pathToJar}/${jarName}.jar -DgroupId=org.mdht.dependencies -DartifactId=${artifactId} -Dversion=${version} -Dpackaging=jar
            
-    + org.mdht.dependencies   | org.openhealthtools.mdht.uml.cda.consol   | 2.5.8.20160323   | org.openhealthtools.mdht.uml.cda.consol-2.5.8.20160323.jar
-    + org.mdht.dependencies   | org.openhealthtools.mdht.uml.cda.consol2   | 2.5.8.20160323   | org.openhealthtools.mdht.uml.cda.consol2-2.5.8.20160323.jar
-    + org.mdht.dependencies   | org.openhealthtools.mdht.uml.cda   | 2.5.19.201603232017   | org.openhealthtools.mdht.uml.cda-2.5.19.201603232017.jar
-    + org.mdht.dependencies   | org.openhealthtools.mdht.emf.runtime   | 2.5.19.201603232017   | org.openhealthtools.mdht.emf.runtime-2.5.19.201603232017.jar
-    + org.mdht.dependencies   | org.openhealthtools.mdht.uml.hl7.rim   | 2.5.19.201603232017   | org.openhealthtools.mdht.uml.hl7.rim-2.5.19.201603232017.jar
-    + org.mdht.dependencies   | org.openhealthtools.mdht.uml.hl7.datatypes   | 2.5.19.201603232017   | org.openhealthtools.mdht.uml.hl7.datatypes-2.5.19.201603232017.jar
-    + org.mdht.dependencies   | org.openhealthtools.mdht.uml.hl7.vocab   | 2.5.19.201603232017   | org.openhealthtools.mdht.uml.hl7.vocab-2.5.19.201603232017.jar
-    + org.mdht.dependencies   | org.eclipse.emf.common   | 2.9.2.v20131212-0545   | org.eclipse.emf.common-2.9.2.v20131212-0545.jar
-    + org.mdht.dependencies   | org.eclipse.emf.ecore   | 2.9.2.v20131212-0545   | org.eclipse.emf.ecore-2.9.2.v20131212-0545
-    + org.mdht.dependencies   | org.eclipse.emf.ecore.xmi   | 2.9.2.v20131212-0545   | org.eclipse.emf.ecore.xmi-2.9.1.v20131212-0545.jar
-    + org.mdht.dependencies   | org.eclipse.ocl   | 3.3.0.v20140120-1508   | org.eclipse.ocl-3.3.0.v20140120-1508.jar
-    + org.mdht.dependencies   | org.eclipse.ocl.common   | 1.1.0.v20130531-0544   | org.eclipse.ocl.common-1.1.0.v20130531-0544.jar
-    + org.mdht.dependencies   | org.eclipse.ocl.ecore   | 3.3.0.v20130520-1222   | org.eclipse.ocl.ecore-3.3.0.v20130520-1222.jar
-    + org.mdht.dependencies   | org.eclipse.uml2.common   | 1.8.2.v20140202-2055   | org.eclipse.uml2.common-1.8.2.v20140202-2055.jar
-    + org.mdht.dependencies   | org.eclipse.uml2.types   | 1.1.0.v20140202-2055   | org.eclipse.uml2.types-1.1.0.v20140202-2055.jar
-    + org.mdht.dependencies   | lpg.runtime.java   | 2.0.17.v201004271640   | lpg.runtime.java-2.0.17.v201004271640.jar    
+    + org.openhealthtools.mdht.uml.cda.consol | 2.5.8.20160323 | org.openhealthtools.mdht.uml.cda.consol-2.5.8.20160323.jar
+    + org.openhealthtools.mdht.uml.cda.consol2 | 2.5.8.20160323 | org.openhealthtools.mdht.uml.cda.consol2-2.5.8.20160323.jar
+    + org.openhealthtools.mdht.uml.cda | 2.5.19.201603232017 | org.openhealthtools.mdht.uml.cda-2.5.19.201603232017.jar
+    + org.openhealthtools.mdht.emf.runtime | 2.5.19.201603232017 | org.openhealthtools.mdht.emf.runtime-2.5.19.201603232017.jar
+    + org.openhealthtools.mdht.uml.hl7.rim | 2.5.19.201603232017 | org.openhealthtools.mdht.uml.hl7.rim-2.5.19.201603232017.jar
+    + org.openhealthtools.mdht.uml.hl7.datatypes | 2.5.19.201603232017 | org.openhealthtools.mdht.uml.hl7.datatypes-2.5.19.201603232017.jar
+    + org.openhealthtools.mdht.uml.hl7.vocab | 2.5.19.201603232017 | org.openhealthtools.mdht.uml.hl7.vocab-2.5.19.201603232017.jar
+    + org.eclipse.emf.common | 2.9.2.v20131212-0545 | org.eclipse.emf.common-2.9.2.v20131212-0545.jar
+    + org.eclipse.emf.ecore | 2.9.2.v20131212-0545 | org.eclipse.emf.ecore-2.9.2.v20131212-0545
+    + org.eclipse.emf.ecore.xmi | 2.9.2.v20131212-0545 | org.eclipse.emf.ecore.xmi-2.9.1.v20131212-0545.jar
+    + org.eclipse.ocl | 3.3.0.v20140120-1508 | org.eclipse.ocl-3.3.0.v20140120-1508.jar
+    + org.eclipse.ocl.common | 1.1.0.v20130531-0544 | org.eclipse.ocl.common-1.1.0.v20130531-0544.jar
+    + org.eclipse.ocl.ecore | 3.3.0.v20130520-1222 | org.eclipse.ocl.ecore-3.3.0.v20130520-1222.jar
+    + org.eclipse.uml2.common | 1.8.2.v20140202-2055 | org.eclipse.uml2.common-1.8.2.v20140202-2055.jar
+    + org.eclipse.uml2.types | 1.1.0.v20140202-2055 | org.eclipse.uml2.types-1.1.0.v20140202-2055.jar
+    + lpg.runtime.java | 2.0.17.v201004271640 | lpg.runtime.java-2.0.17.v201004271640.jar    
 
 + To build a JAR:
     + For Windows, run `mvnw.cmd clean install`
