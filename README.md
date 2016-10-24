@@ -31,9 +31,8 @@ To build the project, navigate to the folder that contains the [**parent** `pom.
   
     + Commend need to run
           + mvn install:install-file -Dfile={pathToJar}/{jarName}.jar -DgroupId={groupId} -DartifactId={artifactId} -Dversion={version} -Dpackaging=jar
-  
-    + MDHT common jar for both document-validator-ccda-r1 and document-validator-ccda-r2 (groupId, artifactId, version, jarName)
-    
+
+    + MDHT common jar for both document-validator-ccda-r1 and document-validator-ccda-r2 (groupId, artifactId, version, jarName) 
           + org.mdht.dependencies   | org.openhealthtools.mdht.uml.cda.consol   | 2.5.8.20160323   | org.openhealthtools.mdht.uml.cda.consol-2.5.8.20160323.jar
           + org.mdht.dependencies   | org.openhealthtools.mdht.uml.cda.consol2   | 2.5.8.20160323   | org.openhealthtools.mdht.uml.cda.consol2-2.5.8.20160323.jar
           + org.mdht.dependencies   | org.openhealthtools.mdht.uml.cda   | 2.5.19.201603232017   | org.openhealthtools.mdht.uml.cda-2.5.19.201603232017.jar
