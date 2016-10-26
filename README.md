@@ -112,6 +112,9 @@ Java has a default CA Certificates Store that allows it to trust well-known cert
 
 [//]: # (## Contribute)
 
+## License
+View [license](https://github.com/bhits/document-validator/blob/master/LICENSE) information for the software contained in this repository.
+
 ## Contact
 
 If you have any questions, comments, or concerns please see [Consent2Share](https://bhits.github.io/consent2share/) project site.

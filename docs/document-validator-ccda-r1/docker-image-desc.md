@@ -43,7 +43,7 @@ Support for older versions (down to 1.6) is provided on a best-effort basis.
 Please see the [Docker installation documentation](https://docs.docker.com/engine/installation/) for details on how to upgrade your Docker daemon.
 
 # License
-View [license](https://github.com/bhits/document-validator) information for the software contained in this image.
+View [license](https://github.com/bhits/document-validator/blob/master/LICENSE) information for the software contained in this image.
 
 # User Feedback
 
