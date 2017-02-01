@@ -5,8 +5,9 @@ Document Validator is responsible for validating user uploaded documents.
 
 # Supported Tags and Respective `Dockerfile` Links
 
-document-validator-ccda-r2
-[`0.9.0`](https://github.com/bhits/document-validator/blob/master/document-validator/document-validator-ccda-r2/src/main/docker/Dockerfile),[`latest`](https://github.com/bhits/document-validator/blob/master/document-validator/document-validator-ccda-r2/src/main/docker/Dockerfile)[(0.9.0/Dockerfile)](https://github.com/bhits/document-validator/blob/master/document-validator/document-validator-ccda-r2/src/main/docker/Dockerfile)
+[`0.9.0(latest)`](https://github.com/bhits/document-validator/releases/tag/0.9.0)
+
+[`Current Dockerfile`](https://github.com/bhits/document-validator/blob/master/document-validator/document-validator-ccda-r2/src/main/docker/Dockerfile)
 
 
 For more information about this image, the source code, and its history, please see the [GitHub repository](https://github.com/bhits/document-validator).
@@ -22,11 +23,12 @@ For more information and related downloads for Consent2Share, please visit [Cons
 
 Be sure to familiarize yourself with the repository's [README.md](https://github.com/bhits/document-validator) file before starting the instance.
 
-document-validator-ccda-r2
+document-validator-ccda-r2 :
+
 `docker run  --name document-validator-ccda-r2 -d bhits/document-validator-ccda-r2:latest <additional program arguments>`
 
 
-*NOTE: In order for this API to fully function as a microservice in the Consent2Share application, it is required to setup the dependency microservices and support level infrastructure. Please refer to the [Consent2Share Deployment Guide](https://github.com/bhits/consent2share/releases/download/2.0.0/c2s-deployment-guide.pdf) for instructions to setup the C2S infrastructure.*
+*NOTE: In order for this API to fully function as a microservice in the Consent2Share application, it is required to setup the dependency microservices and the support level infrastructure. Please refer to the Consent2Share Deployment Guide in the corresponding Consent2Share release (see [Consent2Share Releases Page](https://github.com/bhits/consent2share/releases)) for instructions to setup the Consent2Share infrastructure.*
 
 ## Environment Variable
 
