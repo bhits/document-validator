@@ -17,7 +17,7 @@ This project contains a [**parent** `pom.xml` file](document-validator/pom.xml) 
 
 This is a Maven project and requires [Apache Maven](https://maven.apache.org/) 3.3.3 or greater to build it. It is recommended to use the *Maven Wrapper* scripts provided with this project. *Maven Wrapper* requires an internet connection to download Maven and the project dependencies for the very first build.
 
-To build the project, navigate to the folder that contains the [**parent** `pom.xml` file](document-validator/pom.xml) using terminal/command line.
+To build the project, navigate to the folder that contains the [**parent** `pom.xml` file](document-validator/pom.xml) using the terminal/command line.
 
 + External Dependencies:
   MDHT dependencies are needed to build and run Document Validator correctly. Since the jars are not available in Maven central repository, they are provided and attached in the release page. The following jars (listed in the order of ${artifactId}  | ${version}  | ${jarName} ) need to be manually installed by the following command : mvn install:install-file -Dfile=${pathToJar}/${jarName}.jar -DgroupId=org.mdht.dependencies -DartifactId=${artifactId} -Dversion=${version} -Dpackaging=jar
@@ -102,7 +102,7 @@ services:
 
 ### Override Java CA Certificates Store In Docker Environment
 
-Java has a default CA Certificates Store that allows it to trust well-known certificate authorities. For development and testing purposes, one might want to trust additional self-signed certificates. In order to override the default Java CA Certificates Store in a Docker container, one can mount a custom `cacerts` file over the default one in the Docker image as `docker run -d -v "/path/on/dockerhost/to/custom/cacerts:/etc/ssl/certs/java/cacerts" bhits/document-validator-ccda-r1:latest`
+Java has a default CA Certificates Store that allows it to trust well-known certificate authorities. For development and testing purposes, one might want to trust additional self-signed certificates. In order to override the default Java CA Certificates Store in a Docker container, one can mount a custom `cacerts` file over the default one in the Docker image as follows: `docker run -d -v "/path/on/dockerhost/to/custom/cacerts:/etc/ssl/certs/java/cacerts" bhits/document-validator-ccda-r1:latest`
 
 *NOTE: The `cacerts` references given in the both sides of volume mapping above are files, not directories.*
 
