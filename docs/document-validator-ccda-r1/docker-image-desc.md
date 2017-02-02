@@ -5,7 +5,7 @@ Document Validator is responsible for validating user uploaded documents.
 
 # Supported Source Code Tags and Current `Dockerfile` Link
 
-[`0.9.0(latest)`](https://github.com/bhits/document-validator/releases/tag/0.9.0)
+[`0.11.0(latest)`](https://github.com/bhits/document-validator/releases/tag/0.11.0), [`0.9.0`](https://github.com/bhits/document-validator/releases/tag/0.9.0)
 
 [`Current Dockerfile`](https://github.com/bhits/document-validator/blob/master/document-validator/document-validator-ccda-r1/src/main/docker/Dockerfile)
 
