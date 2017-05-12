@@ -1,0 +1,14 @@
+server:
+  port: 8464
+logging:
+  file: /java/C2S_LOGS/document-validator/document-validator.log
+info:
+  component: Document Validation Service
+hystrix.command.default.execution.timeout.enabled: false
+---
+spring.profiles: standalone-ssl
+spring:
+  profiles:
+    include: ssl-default
+server:
+  context-path: /document-validator
