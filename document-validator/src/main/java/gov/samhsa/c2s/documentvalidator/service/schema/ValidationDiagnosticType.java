@@ -1,4 +1,4 @@
-package gov.samhsa.c2s.documentvalidator.service.dto;
+package gov.samhsa.c2s.documentvalidator.service.schema;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

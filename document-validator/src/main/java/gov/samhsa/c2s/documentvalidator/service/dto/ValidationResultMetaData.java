@@ -1,5 +1,7 @@
 package gov.samhsa.c2s.documentvalidator.service.dto;
 
+import gov.samhsa.c2s.documentvalidator.service.schema.ValidationDiagnosticType;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
