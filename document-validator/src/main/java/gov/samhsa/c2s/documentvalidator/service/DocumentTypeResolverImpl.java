@@ -3,7 +3,7 @@ package gov.samhsa.c2s.documentvalidator.service;
 import gov.samhsa.c2s.common.document.accessor.DocumentAccessor;
 import gov.samhsa.c2s.common.document.accessor.DocumentAccessorException;
 import gov.samhsa.c2s.common.document.converter.DocumentXmlConverter;
-import gov.samhsa.c2s.documentvalidator.exception.DocumentTypeResolverException;
+import gov.samhsa.c2s.documentvalidator.service.exception.DocumentTypeResolverException;
 import gov.samhsa.c2s.documentvalidator.service.schema.DocumentType;
 import gov.samhsa.c2s.documentvalidator.service.schema.TemplateIdRootNotFoundException;
 import lombok.extern.slf4j.Slf4j;

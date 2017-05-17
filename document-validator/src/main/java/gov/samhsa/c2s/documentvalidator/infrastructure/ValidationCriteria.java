@@ -1,9 +1,19 @@
 package gov.samhsa.c2s.documentvalidator.infrastructure;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
+import com.fasterxml.jackson.annotation.JsonValue;
 
-public class ValidationCriteria {
-    public static final Charset DEFAULT_ENCODING = StandardCharsets.UTF_8;
-    public static final String C_CDA_IG_ONLY = "C-CDA_IG_Only";
+public enum ValidationCriteria {
+    C_CDA_IG_ONLY("C-CDA_IG_Only"),
+    C32_SCHEMA_ONLY("C32_Schema_Only");
+
+    private String criteriaTypeName;
+
+    ValidationCriteria(String type) {
+        criteriaTypeName = type;
+    }
+
+    @JsonValue
+    public String getTypeName() {
+        return criteriaTypeName;
+    }
 }

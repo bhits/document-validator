@@ -1,4 +1,4 @@
-package gov.samhsa.c2s.documentvalidator.exception;
+package gov.samhsa.c2s.documentvalidator.service.exception;
 
 public class DocumentTypeResolverException extends RuntimeException {
     public DocumentTypeResolverException() {
