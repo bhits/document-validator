@@ -3,6 +3,7 @@ package gov.samhsa.c2s.documentvalidator.service;
 import gov.samhsa.c2s.common.validation.XmlValidation;
 import gov.samhsa.c2s.common.validation.XmlValidationResult;
 import gov.samhsa.c2s.common.validation.exception.XmlDocumentReadFailureException;
+import gov.samhsa.c2s.documentvalidator.config.DocumentValidatorProperties;
 import gov.samhsa.c2s.documentvalidator.infrastructure.CcdaValidator;
 import gov.samhsa.c2s.documentvalidator.infrastructure.ValidationCriteria;
 import gov.samhsa.c2s.documentvalidator.infrastructure.exception.C32ValidatorRunningException;
@@ -34,13 +35,17 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
 
     private final CcdaValidator ccdaValidator;
 
+    private final DocumentValidatorProperties documentValidatorProperties;
+
     @Autowired
     public DocumentValidationServiceImpl(XmlValidation c32SchemaValidator,
                                          DocumentTypeResolver documentTypeResolver,
-                                         CcdaValidator ccdaValidator) {
+                                         CcdaValidator ccdaValidator,
+                                         DocumentValidatorProperties documentValidatorProperties) {
         this.c32SchemaValidator = c32SchemaValidator;
         this.documentTypeResolver = documentTypeResolver;
         this.ccdaValidator = ccdaValidator;
+        this.documentValidatorProperties = documentValidatorProperties;
     }
 
     @Override
@@ -119,7 +124,15 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
                 .filter(validationDiagnosticStatistics -> validationDiagnosticStatistics.getDiagnosticType().equalsIgnoreCase(ValidationDiagnosticType.CCDA_ERROR.getTypeName()))
                 .mapToInt(ValidationDiagnosticStatistics::getCount)
                 .sum();
-        return totalErrors <= 0;
+        long totalSchemaErrors = validatorResults.stream()
+                .filter(DocumentValidationResultDetail::isSchemaError)
+                .count();
+
+        if (documentValidatorProperties.isEnabledSchematronValidation()) {
+            return totalErrors <= 0;
+        } else {
+            return totalSchemaErrors <= 0;
+        }
     }
 
     private DocumentValidationResultSummary prepareValidationSummary(List<DocumentValidationResultDetail> validatorResults) {
