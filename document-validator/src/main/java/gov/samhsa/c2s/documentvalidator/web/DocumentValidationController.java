@@ -15,24 +15,26 @@ import javax.validation.Valid;
 @RestController
 public class DocumentValidationController {
     @Autowired
-    DocumentValidationService documentValidationService;
+    private DocumentValidationService documentValidationService;
 
     /**
      * Implement to validate clinical document in encoded bytes format
+     *
      * @param requestDto
      * @return
      */
-    @PostMapping("/validateDocument")
+    @PostMapping("/documentValidation")
     public ValidationResponseDto validateClinicalDocument(@Valid @RequestBody ValidationRequestDto requestDto) {
         return documentValidationService.validateDocument(requestDto);
     }
 
     /**
      * Implement to validate clinical document in file format
+     *
      * @param documentFile
      * @return
      */
-    @PostMapping("/validateDocumentFile")
+    @PostMapping("/multipartFileDocumentValidation")
     public ValidationResponseDto validateClinicalDocumentFile(@RequestParam MultipartFile documentFile) {
         return documentValidationService.validateDocumentFile(documentFile);
     }
