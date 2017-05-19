@@ -11,6 +11,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableFeignClients
 public class DocumentValidatorApplication extends SpringBootServletInitializer {
+
     public static void main(String[] args) {
         SpringApplication.run(DocumentValidatorApplication.class, args);
     }

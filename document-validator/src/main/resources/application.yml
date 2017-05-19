@@ -1,5 +1,3 @@
-server:
-  port: 8464
 logging:
   file: /java/C2S_LOGS/document-validator/document-validator.log
 info:

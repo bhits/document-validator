@@ -1,5 +1,6 @@
 package gov.samhsa.c2s.documentvalidator.infrastructure;
 
+import gov.samhsa.c2s.documentvalidator.infrastructure.exception.CcdaValidatorRunningException;
 import gov.samhsa.c2s.documentvalidator.service.dto.DocumentValidationResultDetail;
 import gov.samhsa.c2s.documentvalidator.service.schema.ValidationDiagnosticType;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +52,7 @@ public class CcdaValidatorImpl implements CcdaValidator {
             CDAUtil.load(ccdaDocumentStream, result);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
+            throw new CcdaValidatorRunningException(e);
         }
         return analysisValidationResults(xpathIndexer, result);
     }
@@ -128,6 +130,7 @@ public class CcdaValidatorImpl implements CcdaValidator {
         } catch (Exception e) {
             log.info("Error In Parsing document: Bad filename, path or invalid document." + e.getMessage());
             log.debug(e.getMessage(), e);
+            throw new CcdaValidatorRunningException(e);
         }
     }
 }

@@ -5,6 +5,7 @@ import gov.samhsa.c2s.common.validation.XmlValidationResult;
 import gov.samhsa.c2s.common.validation.exception.XmlDocumentReadFailureException;
 import gov.samhsa.c2s.documentvalidator.infrastructure.CcdaValidator;
 import gov.samhsa.c2s.documentvalidator.infrastructure.ValidationCriteria;
+import gov.samhsa.c2s.documentvalidator.infrastructure.exception.C32ValidatorRunningException;
 import gov.samhsa.c2s.documentvalidator.service.dto.DocumentValidationResultDetail;
 import gov.samhsa.c2s.documentvalidator.service.dto.DocumentValidationResultSummary;
 import gov.samhsa.c2s.documentvalidator.service.dto.ValidationRequestDto;
@@ -15,7 +16,9 @@ import gov.samhsa.c2s.documentvalidator.service.schema.DocumentType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -52,6 +55,19 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
         return responseDto;
     }
 
+    @Override
+    public ValidationResponseDto validateDocumentFile(MultipartFile documentFile) {
+        ValidationRequestDto requestDto = new ValidationRequestDto();
+
+        try {
+            requestDto.setDocument(documentFile.getBytes());
+        } catch (IOException e) {
+            log.error("There is no file or invalid file", e);
+            throw new UnsupportedDocumentTypeValidationException("There is no file or invalid file", e);
+        }
+        return validateDocument(requestDto);
+    }
+
     private ValidationResponseDto runC32Validator(ValidationRequestDto requestDto, DocumentType documentType) {
         ValidationResponseDto validationResponseDto = new ValidationResponseDto();
         try {
@@ -73,6 +89,7 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
                     .build());
         } catch (XmlDocumentReadFailureException e) {
             log.error(e.getMessage(), e);
+            throw new C32ValidatorRunningException(e);
         }
         return validationResponseDto;
     }
