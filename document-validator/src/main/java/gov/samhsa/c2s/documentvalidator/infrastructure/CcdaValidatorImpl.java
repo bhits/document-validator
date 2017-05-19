@@ -3,6 +3,7 @@ package gov.samhsa.c2s.documentvalidator.infrastructure;
 import gov.samhsa.c2s.documentvalidator.infrastructure.exception.CcdaValidatorRunningException;
 import gov.samhsa.c2s.documentvalidator.service.dto.DocumentValidationResultDetail;
 import gov.samhsa.c2s.documentvalidator.service.schema.ValidationDiagnosticType;
+import gov.samhsa.c2s.documentvalidator.service.util.DocumentHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
@@ -25,6 +26,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,13 +43,14 @@ public class CcdaValidatorImpl implements CcdaValidator {
     }
 
     @Override
-    public List<DocumentValidationResultDetail> validateCCDA(String ccdaDocument) {
+    public List<DocumentValidationResultDetail> validateCCDA(byte[] document, Optional<String> documentEncoding) {
         ValidationResult result = new ValidationResult();
         XPathIndexer xpathIndexer = new XPathIndexer();
         try {
-            processParseXMLDocument(xpathIndexer, ccdaDocument);
+            processParseXMLDocument(xpathIndexer, DocumentHandler
+                    .convertByteDocumentToString(document, documentEncoding));
 
-            InputStream ccdaDocumentStream = new ByteArrayInputStream(ccdaDocument.getBytes());
+            InputStream ccdaDocumentStream = new ByteArrayInputStream(document);
             log.info("Using validation criteria: " + ValidationCriteria.C_CDA_IG_ONLY);
             CDAUtil.load(ccdaDocumentStream, result);
         } catch (Exception e) {

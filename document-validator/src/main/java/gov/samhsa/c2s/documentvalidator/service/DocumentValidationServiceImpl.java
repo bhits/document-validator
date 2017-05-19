@@ -13,21 +13,19 @@ import gov.samhsa.c2s.documentvalidator.service.dto.ValidationResponseDto;
 import gov.samhsa.c2s.documentvalidator.service.exception.UnsupportedDocumentTypeValidationException;
 import gov.samhsa.c2s.documentvalidator.service.schema.CCDAVersion;
 import gov.samhsa.c2s.documentvalidator.service.schema.DocumentType;
+import gov.samhsa.c2s.documentvalidator.service.util.DocumentHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 public class DocumentValidationServiceImpl implements DocumentValidationService {
-    private static final Charset DEFAULT_ENCODING = StandardCharsets.UTF_8;
 
     @Autowired
     private XmlValidation c32SchemaValidator;
@@ -41,7 +39,8 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
     @Override
     public ValidationResponseDto validateDocument(ValidationRequestDto requestDto) {
         //Determine document type
-        final DocumentType documentType = documentTypeResolver.resolve(convertByteDocumentToString(requestDto));
+        final DocumentType documentType = documentTypeResolver.resolve(DocumentHandler
+                .convertByteDocumentToString(requestDto.getDocument(), requestDto.getDocumentEncoding()));
         log.info("Identified document as " + documentType);
         ValidationResponseDto responseDto;
 
@@ -71,7 +70,8 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
     private ValidationResponseDto runC32Validator(ValidationRequestDto requestDto, DocumentType documentType) {
         ValidationResponseDto validationResponseDto = new ValidationResponseDto();
         try {
-            XmlValidationResult xmlValidationResult = c32SchemaValidator.validateWithAllErrors(convertByteDocumentToString(requestDto));
+            XmlValidationResult xmlValidationResult = c32SchemaValidator.validateWithAllErrors(DocumentHandler
+                    .convertByteDocumentToString(requestDto.getDocument(), requestDto.getDocumentEncoding()));
             //Map xmlValidationResult to DocumentValidationResultDetail
             List<DocumentValidationResultDetail> validatorResults = xmlValidationResult.getExceptions().stream()
                     .map(e -> DocumentValidationResultDetail.builder()
@@ -95,17 +95,11 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
     }
 
     private ValidationResponseDto runCCDAValidator(ValidationRequestDto requestDto, DocumentType documentType) {
-        List<DocumentValidationResultDetail> validatorResults = ccdaValidator.validateCCDA(convertByteDocumentToString(requestDto));
+        List<DocumentValidationResultDetail> validatorResults = ccdaValidator.validateCCDA(requestDto.getDocument(), requestDto.getDocumentEncoding());
 
         ValidationResponseDto validationResponseDto = new ValidationResponseDto();
         validationResponseDto.setDocumentType(documentType);
         validationResponseDto.setValidationResultDetails(validatorResults);
         return validationResponseDto;
-    }
-
-    private String convertByteDocumentToString(ValidationRequestDto requestDto) {
-        // Set UTF-8 as default encoding if no present
-        final Charset charset = requestDto.getDocumentEncoding().map(Charset::forName).orElse(DEFAULT_ENCODING);
-        return new String(requestDto.getDocument(), charset);
     }
 }
