@@ -35,7 +35,9 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
     private final CcdaValidator ccdaValidator;
 
     @Autowired
-    public DocumentValidationServiceImpl(XmlValidation c32SchemaValidator, DocumentTypeResolver documentTypeResolver, CcdaValidator ccdaValidator) {
+    public DocumentValidationServiceImpl(XmlValidation c32SchemaValidator,
+                                         DocumentTypeResolver documentTypeResolver,
+                                         CcdaValidator ccdaValidator) {
         this.c32SchemaValidator = c32SchemaValidator;
         this.documentTypeResolver = documentTypeResolver;
         this.ccdaValidator = ccdaValidator;
@@ -101,13 +103,23 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
     }
 
     private ValidationResponseDto runCCDAValidator(ValidationRequestDto requestDto, DocumentType documentType) {
-        List<DocumentValidationResultDetail> validatorResults = ccdaValidator.validateCCDA(requestDto.getDocument(), requestDto.getDocumentEncoding());
+        List<DocumentValidationResultDetail> validatorResults = ccdaValidator.validateCCDA(requestDto.getDocument(),
+                requestDto.getDocumentEncoding());
 
         return ValidationResponseDto.builder()
                 .documentType(documentType)
+                .isDocumentValid(determineDocumentIsValid(validatorResults))
                 .validationResultSummary(prepareValidationSummary(validatorResults))
                 .validationResultDetails(validatorResults)
                 .build();
+    }
+
+    private boolean determineDocumentIsValid(List<DocumentValidationResultDetail> validatorResults) {
+        int totalErrors = prepareValidationSummary(validatorResults).getDiagnosticStatistics().stream()
+                .filter(validationDiagnosticStatistics -> validationDiagnosticStatistics.getDiagnosticType().equalsIgnoreCase(ValidationDiagnosticType.CCDA_ERROR.getTypeName()))
+                .mapToInt(ValidationDiagnosticStatistics::getCount)
+                .sum();
+        return totalErrors <= 0;
     }
 
     private DocumentValidationResultSummary prepareValidationSummary(List<DocumentValidationResultDetail> validatorResults) {
