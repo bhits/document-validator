@@ -6,13 +6,11 @@ import gov.samhsa.c2s.common.validation.exception.XmlDocumentReadFailureExceptio
 import gov.samhsa.c2s.documentvalidator.infrastructure.CcdaValidator;
 import gov.samhsa.c2s.documentvalidator.infrastructure.ValidationCriteria;
 import gov.samhsa.c2s.documentvalidator.infrastructure.exception.C32ValidatorRunningException;
-import gov.samhsa.c2s.documentvalidator.service.dto.DocumentValidationResultDetail;
-import gov.samhsa.c2s.documentvalidator.service.dto.DocumentValidationResultSummary;
-import gov.samhsa.c2s.documentvalidator.service.dto.ValidationRequestDto;
-import gov.samhsa.c2s.documentvalidator.service.dto.ValidationResponseDto;
+import gov.samhsa.c2s.documentvalidator.service.dto.*;
 import gov.samhsa.c2s.documentvalidator.service.exception.UnsupportedDocumentTypeValidationException;
 import gov.samhsa.c2s.documentvalidator.service.schema.CCDAVersion;
 import gov.samhsa.c2s.documentvalidator.service.schema.DocumentType;
+import gov.samhsa.c2s.documentvalidator.service.schema.ValidationDiagnosticType;
 import gov.samhsa.c2s.documentvalidator.service.util.DocumentHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,21 +18,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 public class DocumentValidationServiceImpl implements DocumentValidationService {
 
-    @Autowired
-    private XmlValidation c32SchemaValidator;
+    private final XmlValidation c32SchemaValidator;
+
+    private final DocumentTypeResolver documentTypeResolver;
+
+    private final CcdaValidator ccdaValidator;
 
     @Autowired
-    private DocumentTypeResolver documentTypeResolver;
-
-    @Autowired
-    private CcdaValidator ccdaValidator;
+    public DocumentValidationServiceImpl(XmlValidation c32SchemaValidator, DocumentTypeResolver documentTypeResolver, CcdaValidator ccdaValidator) {
+        this.c32SchemaValidator = c32SchemaValidator;
+        this.documentTypeResolver = documentTypeResolver;
+        this.ccdaValidator = ccdaValidator;
+    }
 
     @Override
     public ValidationResponseDto validateDocument(ValidationRequestDto requestDto) {
@@ -44,6 +49,7 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
         log.info("Identified document as " + documentType);
         ValidationResponseDto responseDto;
 
+        // Support clinical document type: C32, C-CDA R1+ and C-CDA R2+
         if (DocumentType.HITSP_C32.equals(documentType)) {
             responseDto = runC32Validator(requestDto, documentType);
         } else if (documentType.isCCDA(CCDAVersion.R1) || documentType.isCCDA(CCDAVersion.R2)) {
@@ -97,9 +103,42 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
     private ValidationResponseDto runCCDAValidator(ValidationRequestDto requestDto, DocumentType documentType) {
         List<DocumentValidationResultDetail> validatorResults = ccdaValidator.validateCCDA(requestDto.getDocument(), requestDto.getDocumentEncoding());
 
-        ValidationResponseDto validationResponseDto = new ValidationResponseDto();
-        validationResponseDto.setDocumentType(documentType);
-        validationResponseDto.setValidationResultDetails(validatorResults);
-        return validationResponseDto;
+        return ValidationResponseDto.builder()
+                .documentType(documentType)
+                .validationResultSummary(prepareValidationSummary(validatorResults))
+                .validationResultDetails(validatorResults)
+                .build();
+    }
+
+    private DocumentValidationResultSummary prepareValidationSummary(List<DocumentValidationResultDetail> validatorResults) {
+        Map<String, AtomicInteger> validationSummaryMap = processValidationResultMetaData(validatorResults).getValidationSummaryMap();
+
+        ValidationDiagnosticStatistics ccdaError = ValidationDiagnosticStatistics.builder()
+                .diagnosticType(ValidationDiagnosticType.CCDA_ERROR.getTypeName())
+                .count(validationSummaryMap.get(ValidationDiagnosticType.CCDA_ERROR.getTypeName()).intValue())
+                .build();
+
+        ValidationDiagnosticStatistics ccdaWarning = ValidationDiagnosticStatistics.builder()
+                .diagnosticType(ValidationDiagnosticType.CCDA_WARN.getTypeName())
+                .count(validationSummaryMap.get(ValidationDiagnosticType.CCDA_WARN.getTypeName()).intValue())
+                .build();
+
+        ValidationDiagnosticStatistics ccdaInfo = ValidationDiagnosticStatistics.builder()
+                .diagnosticType(ValidationDiagnosticType.CCDA_INFO.getTypeName())
+                .count(validationSummaryMap.get(ValidationDiagnosticType.CCDA_INFO.getTypeName()).intValue())
+                .build();
+
+        return DocumentValidationResultSummary.builder()
+                .validationCriteria(ValidationCriteria.C_CDA_IG_ONLY)
+                .diagnosticStatistics(Arrays.asList(ccdaError, ccdaWarning, ccdaInfo))
+                .build();
+    }
+
+    private ValidationResultMetaData processValidationResultMetaData(List<DocumentValidationResultDetail> validatorResults) {
+        ValidationResultMetaData resultMetaData = new ValidationResultMetaData();
+        validatorResults
+                .forEach(resultDetail -> resultMetaData.addCount(resultDetail.getDiagnosticType()));
+
+        return resultMetaData;
     }
 }
