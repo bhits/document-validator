@@ -37,7 +37,8 @@ public class DocumentTypeResolverImpl implements DocumentTypeResolver {
         return resolve(documentXmlConverter.loadDocument(document));
     }
 
-    private DocumentType resolve(Document document) {
+    @Override
+    public DocumentType resolve(Document document) {
         try {
             final Stream<Node> templateIds = documentAccessor.getNodeListAsStream(document, XPATH_TEMPLATE_ID);
             return templateIds

@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="CDA.xsl"?>
+<!--
+ Title:        Home Health Care Plan 
+ Filename:     C-CDA_R2_HHCP485.xml
+ Created by:   Lantana Consulting Group, LLC
+ 
+ $LastChangedDate: 2014-11-12 23:25:09 -0500 (Wed, 12 Nov 2014) $
+  
+ ********************************************************
+ Disclaimer: This sample file contains representative data elements to represent a Continuity of Care Document (CCD). 
+ The file depicts a fictional character's health data. Any resemblance to a real person is coincidental. 
+ To illustrate as many data elements as possible, the clinical scenario may not be plausible. 
+ The data in this sample file is not intended to represent real patients, people or clinical events. 
+ This sample is designed to be used in conjunction with the C-CDA Clinical Notes Implementation Guide.
+ ********************************************************
+ -->
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:voc="urn:hl7-org:v3/voc" xmlns:sdtc="urn:hl7-org:sdtc">
+	<!-- ** CDA Header ** -->
+	<realmCode code="US"/>
+	<typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+	<templateId root="2.16.840.1.113883.10.20.22.1.15"/>
+	<id root="db734647-fc99-424c-a864-7e3cda82e703"/>
+	<!-- Note: In a CDA document LOINC codes are used for document and section codes.
+       There are LOINC codes similar to the ones stated in this sample,
+       but not exact matches.  Need LOINC Codes -->
+	<code code="52521-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Overall Plan of Care/Advance Care Directives"/>
+	<!--<code code="56447-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+        displayName="Home Health Care Plan"/> -->
+	<title>Good Health Hospital Home Health Care Plan</title>
+	<effectiveTime value="201307301120"/>
+	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
+	<languageCode code="en-US"/>
+	<recordTarget>
+		<patientRole>
+			<id extension="996-756-495" root="2.16.840.1.113883.19.5"/>
+			<addr use="HP">
+				<streetAddressLine>17 Daws Rd.</streetAddressLine>
+				<city>Blue Bell</city>
+				<state>MA</state>
+				<postalCode>02368</postalCode>
+				<country>US</country>
+			</addr>
+			<telecom value="tel:(781)555-1212" use="HP"/>
+			<patient>
+				<name>
+					<given>Henry</given>
+					<family>Levin</family>
+					<suffix>the 7th</suffix>
+				</name>
+				<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+				<birthTime value="19320924"/>
+				<maritalStatusCode code="M" displayName="Married" codeSystem="2.16.840.1.113883.5.2" codeSystemName="MaritalStatusCode"/>
+				<religiousAffiliationCode code="1013" displayName="Christian (non-Catholic, non-specific)" codeSystem="2.16.840.1.113883.5.1076" codeSystemName="HL7 Religious Affiliation"/>
+				<!-- CDC Race and Ethnicity code set contains the five minimum race and ethnicity 
+					categories defined by OMB Standards -->
+				<raceCode code="2106-3" displayName="White" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC"/>
+				<ethnicGroupCode code="2186-5" displayName="Not Hispanic or Latino" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC"/>
+				<birthplace>
+					<place>
+						<addr>
+							<streetAddressLine>4444 Home Street</streetAddressLine>
+							<city>Beaverton</city>
+							<state>OR</state>
+							<postalCode>97867</postalCode>
+							<country>US</country>
+						</addr>
+					</place>
+				</birthplace>
+				<languageCommunication>
+					<languageCode code="eng"/>
+					<!-- "eng" is ISO 639-2 alpha-3 code for "English" -->
+					<modeCode code="ESP" displayName="Expressed spoken" codeSystem="2.16.840.1.113883.5.60" codeSystemName="LanguageAbilityMode"/>
+					<proficiencyLevelCode code="G" displayName="Good" codeSystem="2.16.840.1.113883.5.61" codeSystemName="LanguageAbilityProficiency"/>
+					<!-- Patient's preferred language -->
+					<preferenceInd value="true"/>
+				</languageCommunication>
+			</patient>
+			<providerOrganization>
+				<id root="2.16.840.1.113883.19.5"/>
+				<name>Good Health Hospital</name>
+				<telecom use="WP" value="tel: +1(555)555-5000"/>
+				<addr>
+					<streetAddressLine>1007 Health Drive</streetAddressLine>
+					<city>Portland</city>
+					<state>OR</state>
+					<postalCode>99123</postalCode>
+					<country>US</country>
+				</addr>
+			</providerOrganization>
+		</patientRole>
+	</recordTarget>
+	<author>
+		<time value="20130730"/>
+		<assignedAuthor>
+			<id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c"/>
+			<addr>
+				<streetAddressLine>1004 Healthcare Drive </streetAddressLine>
+				<city>Portland</city>
+				<state>OR</state>
+				<postalCode>99123</postalCode>
+				<country>US</country>
+			</addr>
+			<telecom use="WP" value="tel:+1(555)555-1004"/>
+			<assignedPerson>
+				<name>
+					<given>Nurse</given>
+					<family>Nightingale</family>
+					<suffix>RN</suffix>
+				</name>
+			</assignedPerson>
+			<representedOrganization>
+				<id root="2.16.840.1.113883.19.5"/>
+				<name>Good Health Hospital</name>
+			</representedOrganization>
+		</assignedAuthor>
+	</author>
+	<custodian>
+		<assignedCustodian>
+			<representedCustodianOrganization>
+				<id root="2.16.840.1.113883.19.5"/>
+				<name>Good Health Hospital</name>
+				<telecom use="WP" value="tel:+1(555)555-1009"/>
+				<addr use="WP">
+					<streetAddressLine>1009 Healthcare Drive </streetAddressLine>
+					<city>Portland</city>
+					<state>OR</state>
+					<postalCode>99123</postalCode>
+					<country>US</country>
+				</addr>
+			</representedCustodianOrganization>
+		</assignedCustodian>
+	</custodian>
+	<legalAuthenticator>
+		<time value="20130730"/>
+		<signatureCode code="S"/>
+		<assignedEntity>
+			<id root="20cf14fb-b65c-4c8c-a54d-b0cca834c18c"/>
+			<code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" displayName="Registered nurse"/>
+			<addr>
+				<streetAddressLine>1004 Healthcare Drive </streetAddressLine>
+				<city>Portland</city>
+				<state>OR</state>
+				<postalCode>99123</postalCode>
+				<country>US</country>
+			</addr>
+			<telecom use="WP" value="tel:+1(555)555-1004"/>
+			<assignedPerson>
+				<name>
+					<given>Nurse</given>
+					<family>Nightingale</family>
+					<suffix>RN</suffix>
+				</name>
+			</assignedPerson>
+			<representedOrganization>
+				<id root="2.16.840.1.113883.19.5"/>
+				<name>Good Health Hospital</name>
+				<!-- the organization id and name -->
+			</representedOrganization>
+		</assignedEntity>
+		<!--<sdtc:signatureText mediaType="text/xml" representation="B64"
+            >omSJUEdmde9j44zmMiromSJUEdmde9j44zmMirdMDSsWdIJdksIJR3373jeu83
+            6edjzMMIjdMDSsWdIJdksIJR3373jeu83MNYD83jmMdomSJUEdmde9j44zmMir ...
+            MNYD83jmMdomSJUEdmde9j44zmMir6edjzMMIjdMDSsWdIJdksIJR3373jeu83
+            4zmMir6edjzMMIjdMDSsWdIJdksIJR3373jeu83==</sdtc:signatureText>-->
+	</legalAuthenticator>
+	<!-- This authenticator represents patient agreement or 
+		   sign-off of the Care Plan-->
+	<authenticator>
+		<time value="20130802"/>
+		<signatureCode code="S"/>
+		<!--<sdtc:signatureText mediaType="text/xml" representation="B64"
+            >omSJUEdmde9j44zmMiromSJUEdmde9j44zmMirdMDSsWdIJdksIJR3373jeu83
+            6edjzMMIjdMDSsWdIJdksIJR3373jeu83MNYD83jmMdomSJUEdmde9j44zmMir ...
+            MNYD83jmMdomSJUEdmde9j44zmMir6edjzMMIjdMDSsWdIJdksIJR3373jeu83
+            4zmMir6edjzMMIjdMDSsWdIJdksIJR3373jeu83==</sdtc:signatureText>-->
+		<assignedEntity>
+			<id extension="996-756-495" root="2.16.840.1.113883.19.5"/>
+			<code code="ONESELF" displayName="Self" codeSystem="2.16.840.1.113883.5.111" codeSystemName="RoleCode"/>
+			<addr>
+				<streetAddressLine>1004 Healthcare Drive </streetAddressLine>
+				<city>Portland</city>
+				<state>OR</state>
+				<postalCode>99123</postalCode>
+				<country>US</country>
+			</addr>
+			<telecom use="WP" value="tel:+1(555)555-1004"/>
+			<assignedPerson>
+				<name>
+					<given>Henry</given>
+					<family>Levin</family>
+					<suffix>the 7th</suffix>
+				</name>
+			</assignedPerson>
+		</assignedEntity>
+	</authenticator>
+	<!-- These two participants represent Care Plan reviews.
+    When the participant/time is earlier than the document date,
+    it records the date of a review that has already taken place.
+    When the participant/time is later than the document date,
+    it records the date of the next scheduled review. -->
+	<!-- At the time this document was created,
+       the first Care Plan Review below has taken place;
+       the second is scheduled. -->
+	<participant typeCode="IND">
+		<functionCode code="425268008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Review of Care Plan"/>
+		<time value="20130801"/>
+		<associatedEntity classCode="CAREGIVER">
+			<id root="anID"/>
+			<code code="SELF" displayName="self" codeSystem="2.16.840.1.113883.5.111"/>
+			<associatedPerson>
+				<name>
+					<prefix>Mrs.</prefix>
+					<given>Martha</given>
+					<family>Jones</family>
+				</name>
+			</associatedPerson>
+		</associatedEntity>
+	</participant>
+	<participant typeCode="IND">
+		<functionCode code="425268008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Review of Care Plan"/>
+		<time value="20130901"/>
+		<associatedEntity classCode="CAREGIVER">
+			<id root="anID"/>
+			<associatedPerson>
+				<name>
+					<given>Nurse</given>
+					<family>Nightingale</family>
+					<suffix>RN</suffix>
+				</name>
+			</associatedPerson>
+		</associatedEntity>
+	</participant>
+	<documentationOf>
+		<serviceEvent classCode="PCPR">
+			<effectiveTime>
+				<low value="20130720"/>
+				<high value="20130725"/>
+			</effectiveTime>
+			<!-- The performer(s) represents the healthcare providers involved in the current or historical care of the patient.
+                The patient’s key healthcare providers would be listed here which would include the primary physician and any 
+                active consulting physicians, therapists, counselors, and care team members.  -->
+			<performer typeCode="PRF">
+				<time value="20130715223615-0800"/>
+				<assignedEntity>
+					<id extension="5555555555" root="2.16.840.1.113883.4.6"/>
+					<code code="207QA0505X" displayName="Adult Medicine" codeSystem="2.16.840.1.113883.6.101" codeSystemName="Healthcare Provider Taxonomy (HIPAA)"/>
+					<addr>
+						<streetAddressLine>1004 Healthcare Drive </streetAddressLine>
+						<city>Portland</city>
+						<state>OR</state>
+						<postalCode>99123</postalCode>
+						<country>US</country>
+					</addr>
+					<telecom use="WP" value="tel:+1(555)-1004"/>
+					<assignedPerson>
+						<name>
+							<given>Patricia</given>
+							<given qualifier="CL">Patty</given>
+							<family>Primary</family>
+							<suffix qualifier="AC">M.D.</suffix>
+						</name>
+					</assignedPerson>
+				</assignedEntity>
+			</performer>
+		</serviceEvent>
+	</documentationOf>
+	<componentOf>
+		<encompassingEncounter>
+			<id extension="9937012" root="2.16.840.1.113883.19"/>
+			<code codeSystem="2.16.840.1.113883.5.4" code="AMB" displayName="Ambulatory"/>
+			<!-- captures that this is an outpatient encounter -->
+			<effectiveTime>
+				<low value="20130707"/>
+				<!-- No high value - this patient is still under home health care -->
+			</effectiveTime>
+		</encompassingEncounter>
+	</componentOf>
+	<!--
+  ********************************************************
+  CDA Body
+  ********************************************************
+  -->
+	<component>
+		<structuredBody>
+			<!--
+      ********************************************************
+      Health Concerns section
+      ********************************************************
+      -->
+			<component>
+				<section>
+					<!-- Health Concerns Section -->
+					<templateId root="2.16.840.1.113883.10.20.22.2.58"/>
+					<code code="75310-3" displayName="Health Concerns document" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<title>Health Concerns Section</title>
+					<text>
+						<list>
+							<item>Prognosis. Feb 3, 2012. Presence of a life-limiting condition.</item>
+							<item>Concern. Feb 3, 2012. Active. <list>
+									<item>Diagnosis: Osteoporosis. Onset May 2010. Not resolved. <list>
+											<item>Supporting observation: Bone density = [a low value]. May 5, 2013</item>
+										</list>
+									</item>
+									<item>Problem: Broken ankle. Onset June 3 2013. Not resolved.</item>
+								</list>
+							</item>
+							<item>Risk. June 3, 2013. Active. <list>
+									<item>Risk of falls.</item>
+									<item>Related to: Broken ankle.</item>
+								</list>
+							</item>
+						</list>
+					</text>
+					<entry>
+						<!-- Prognosis -->
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.113"/>
+							<id root="2097c709-291b-4a0f-bef9-ad9b23b3bb43"/>
+							<code code="75328-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Prognosis"/>
+							<text>Presence of a life limiting condition (>50% possibility of death within 2 years)</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20120203"/>
+							<value xsi:type="ST">Presence of a life limiting condition (>50% possibility of death within 2 years)</value>
+						</observation>
+					</entry>
+					<!-- ** Health Concern Act (CONCERN) ** -->
+					<entry>
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.132"/>
+							<id root="4eab0e52-dd7d-4285-99eb-72d32ddb195c"/>
+							<code code="75310-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Health Concern"/>
+							<!-- This is an active concern -->
+							<statusCode code="active"/>
+							<!-- The effective time of the Health Concern is the date that
+                   the concern started being followed. The onset date might be earlier. -->
+							<effectiveTime value="20120203"/>
+							<!-- ** Encounter Diagnosis: osteoporosis ** -->
+							<entryRelationship typeCode="SUBJ">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.80" extension="2014-06-09"/>
+									<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosis"/>
+									<!-- The statusCode reflects the status of the observation itself -->
+									<statusCode code="completed"/>
+									<effectiveTime>
+										<!-- The low value records the date of onset -->
+										<low value="201005"/>
+										<!-- A high value would record resolution date -->
+									</effectiveTime>
+									<value xsi:type="CD" code="xxx" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="osteoporosis"/>
+									<!-- ** Health Concern HAS SUPPORT Observation ** -->
+									<entryRelationship typeCode="SPRT">
+										<!-- Result Observation -->
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2014-06-09"/>
+											<id root="01cb0d7a-46e2-4367-b38b-9465ffbf64e3"/>
+											<code code="38261-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Bone density"/>
+											<statusCode code="completed"/>
+											<effectiveTime>
+												<low value="20130505"/>
+											</effectiveTime>
+											<value xsi:type="PQ" value="33" unit="%"/>
+											<!-- a low value -->
+										</observation>
+									</entryRelationship>
+								</observation>
+							</entryRelationship>
+							<!-- ** Health Problem: broken ankle ** -->
+							<entryRelationship typeCode="SUBJ">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2014-06-09"/>
+									<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+									<code code="64572001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Condition"/>
+									<!-- The statusCode reflects the status of the observation itself -->
+									<statusCode code="completed"/>
+									<effectiveTime>
+										<!-- The low value records the date of onset -->
+										<low value="20130603"/>
+										<!-- A high value would record resolution date -->
+									</effectiveTime>
+									<value xsi:type="CD" code="xxx" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="broken ankle"/>
+								</observation>
+							</entryRelationship>
+						</act>
+					</entry>
+					<entry>
+						<!-- Risk Concern Act -->
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.136"/>
+							<id root="cbcbf20a-d011-449f-87d1-a23cc3e5f7cf"/>
+							<code code="281694009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="At risk for"/>
+							<!-- This is an active risk -->
+							<statusCode code="active"/>
+							<!-- The effective time is the date the Health Risk started being followed.   The health issues might have started earlier. -->
+							<effectiveTime value="20130505"/>
+							<!-- Health Risk -->
+							<entryRelationship typeCode="REFR">
+								<!-- Problem Observation -->
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2014-06-09"/>
+									<id root="8dfacd73-1682-4cc4-9351-e54ccea83612"/>
+									<code code="80943009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Risk factor"/>
+									<statusCode code="completed"/>
+									<effectiveTime>
+										<low value="20130613"/>
+									</effectiveTime>
+									<value xsi:type="CD" code="xxx" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="falls"/>
+								</observation>
+							</entryRelationship>
+							<!-- ** "Health Risk REFERS TO Health Concern" -->
+							<entryRelationship typeCode="REFR">
+								<!-- Entry Reference Concern Act -->
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.122"/>
+									<!-- This id references the Broken Ankle health concern. -->
+									<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+									<code nullFlavor="NP"/>
+									<statusCode code="completed"/>
+								</act>
+							</entryRelationship>
+						</act>
+					</entry>
+				</section>
+			</component>
+			<!--
+********************************************************
+Goals Section
+********************************************************
+-->
+			<component>
+				<section>
+					<!-- Goals Section -->
+					<templateId root="2.16.840.1.113883.10.20.22.2.60"/>
+					<code code="61146-7" displayName="Goals" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<title>Goals Section</title>
+					<text>
+						<list>
+							<item>Goal set July 7, 2013: Improve bone density. Active. <list>
+									<item>Bone density value = [a better value]. Goal date: September 2, 2014.</item>
+									<item>Health Goal for: Osteoporosis</item>
+								</list>
+							</item>
+							<item>Goal set July 7, 2013: Reduce risk of falls. Active. <list>
+									<item>Health Goal for: Risk of falls</item>
+								</list>
+							</item>
+						</list>
+					</text>
+					<entry>
+						<!-- ** Goal Observation ** -->
+						<observation classCode="OBS" moodCode="GOL">
+							<!-- Goal Observation templateId -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.121"/>
+							<id root="3700b3b0-fbed-11e2-b778-0800200c9a66"/>
+							<code code="44616-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Pulse oximetry panel"/>
+							<statusCode code="active"/>
+							<effectiveTime value="20130707"/>
+							<!-- Provider Author -->
+							<author>
+								<templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+								<time value="20130730"/>
+								<assignedAuthor>
+									<id root="d839038b-7171-4165-a760-467925b43857"/>
+									<code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="Healthcare Provider Taxonomy (HIPAA)" displayName="Registered nurse"/>
+									<assignedPerson>
+										<name>
+											<given>Nurse</given>
+											<family>Florence</family>
+											<suffix>RN</suffix>
+										</name>
+									</assignedPerson>
+								</assignedAuthor>
+							</author>
+							<!-- ** Planned Observation ** -->
+							<entryRelationship typeCode="COMP">
+								<observation classCode="OBS" moodCode="INT">
+									<templateId root="2.16.840.1.113883.10.20.22.4.44" extension="2014-06-09"/>
+									<id root="01cb0d7a-46e2-4367-b38b-9465ffbf64e3"/>
+									<code code="38261-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Bone density"/>
+									<statusCode code="completed"/>
+									<effectiveTime>
+										<low value="20140902"/>
+									</effectiveTime>
+									<value xsi:type="PQ" value="77" unit="%"/>
+									<!-- a better value -->
+								</observation>
+							</entryRelationship>
+							<!-- "Goal REFERS TO Health Concern" -->
+							<entryRelationship typeCode="REFR">
+								<!-- Entry Reference Concern Act -->
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.122"/>
+									<!-- This id references the osteoporosis Health Concern. -->
+									<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+									<code nullFlavor="NP"/>
+									<statusCode code="completed"/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</entry>
+					<entry>
+						<!-- ** Goal Observation ** -->
+						<observation classCode="OBS" moodCode="GOL">
+							<!-- Goal Observation templateId -->
+							<templateId root="2.16.840.1.113883.10.20.22.4.121"/>
+							<id root="3700b3b0-fbed-11e2-b778-0800200c9a66"/>
+							<code code="xxx" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Reduce risk of falls"/>
+							<statusCode code="active"/>
+							<effectiveTime value="20130707"/>
+							<!-- Provider Author -->
+							<author>
+								<templateId root="2.16.840.1.113883.10.20.22.4.119"/>
+								<time value="20130730"/>
+								<assignedAuthor>
+									<id root="d839038b-7171-4165-a760-467925b43857"/>
+									<code code="163W00000X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="Healthcare Provider Taxonomy (HIPAA)" displayName="Registered nurse"/>
+									<assignedPerson>
+										<name>
+											<given>Nurse</given>
+											<family>Florence</family>
+											<suffix>RN</suffix>
+										</name>
+									</assignedPerson>
+								</assignedAuthor>
+							</author>
+							<!-- ** Goal REFERS TO Health Concern ** -->
+							<entryRelationship typeCode="REFR">
+								<!-- Entry Reference Concern Act -->
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.10.20.22.4.122"/>
+									<!-- This id references the Risk of falls. -->
+									<id root="8dfacd73-1682-4cc4-9351-e54ccea83612"/>
+									<code nullFlavor="NP"/>
+									<statusCode code="completed"/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</entry>
+				</section>
+			</component>
+			<!--
+********************************************************
+Interventions Section
+********************************************************
+-->
+			<component>
+				<section>
+					<!-- Interventions Section -->
+					<templateId root="2.16.840.1.113883.10.20.21.2.3" extension="2014-06-09"/>
+					<code code="62387-6" displayName="Interventions Provided" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+					<title>Interventions Section</title>
+					<text>
+						<list>
+							<item>Planned: Supply CaMG supplement. July 14, 2013. <list>
+									<item>Intervention for: Improve bone density.</item>
+									<item>Actual: Supply CaMg supplement. July 10, 2013.</item>
+								</list>
+							</item>
+							<item>Planned: Physiotherapy, weight-bearing exercises. July-September, 2013. <list>
+									<item>Intervention for: Improve bone density.</item>
+								</list>
+							</item>
+							<item>Planned: Physiotherapy, balance exercises. July-September 2013. <list>
+									<item>Intervention for: Reduce risk of falls.</item>
+								</list>
+							</item>
+							<item>Planned: Eliminate clutter on walking paths. July 14, 2013. <list>
+									<item>Intervention for: Reduce risk of falls.</item>
+									<item>Actual: Reduced clutter on walking paths. July 12, 2013.</item>
+								</list>
+							</item>
+							<item>Planned: Supply cane. July 14, 2013. <list>
+									<item>Intervention for: Reduce risk of falls.</item>
+									<item>Actual: Supply walker. July 10, 2013.</item>
+								</list>
+							</item>
+						</list>
+					</text>
+				</section>
+			</component>
+		</structuredBody>
+	</component>
+</ClinicalDocument>

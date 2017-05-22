@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="CDA.xsl"?>
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sdtc="urn:hl7-org:sdtc">
+	<!--
+
+	Title: US_Realm_Patient_Generated_Document_Header_Template
+	Original Filename: US_Realm_Patient_Generated_Document_Header_Template.xml
+	Version: 2.0
+	
+	$LastChangedDate: 2014-06-19 18:55:19 -0400 (Thu, 19 Jun 2014) $ 
+	$Author: eric.parapini $
+	
+	Revision History:
+	11/26/2012 lrn vvb jrf created - version for patient for self
+	08/02/2013 lrn vvb jrf updated 
+-->
+	<!--
+
+********************************************************
+
+  CDA Header for a Patient Generated Health Document
+
+********************************************************
+
+	-->
+	<realmCode code="US"/>
+	<typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+	<!-- C-CDA US Realm Header Template -->
+	<templateId root="2.16.840.1.113883.10.20.22.1.1" extension="2014-06-09"/>
+	<!-- The document conforms to the Universal Realm PGD Header Template. -->
+	<templateId root="2.16.840.1.113883.10.20.29"/>
+	<!-- US General Patient Generated Document (PGD) Header Template - a further constraint on the general header. -->
+	<templateId root="2.16.840.1.113883.10.20.29.1"/>
+	<!-- The PGD Document Template Id -->
+	<templateId root="2.16.840.1.113883.10.20.29.1.1"/>
+	<id extension="999" root="2.16.840.1.113883.19"/>
+	<code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="51855-5" displayName="Patient Generated Document"/>
+	<title>Patient Generated Document: My Health Summary</title>
+	<effectiveTime value="20121126145000-0500"/>
+	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
+	<languageCode code="en-US"/>
+	<setId extension="20121126145000" root="2.16.840.1.113883.19"/>
+	<versionNumber value="1"/>
+	<recordTarget>
+		<patientRole>
+			<!-- Identifier based on the person's Direct Address which is a secure and trusted mechanism for identifying 
+				a person discretely. The root of the id is the OID of the HISP Assigning Authority for the Direct Address-->
+			<id extension="adameveryman@direct.sampleHISP.com" root="2.16.123.123.12345.1234"/>
+			<!-- id using HL7 example OID. -->
+			<id extension="999.1" root="2.16.840.1.113883.19"/>
+			<!-- Fake Social Security Number using the actual SSN OID. -->
+			<id extension="444333333" root="2.16.840.1.113883.4.1"/>
+			<addr use="HP">
+				<!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+				<streetAddressLine>2222 Home Street</streetAddressLine>
+				<city>Boston</city>
+				<state>MA</state>
+				<postalCode>02368</postalCode>
+				<!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+				<country>US</country>
+			</addr>
+			<!-- HP is "primary home" from HL7 AddressUse 2.16.840.1.113883.5.1119 -->
+			<telecom value="tel:(555)555-2004" use="HP"/>
+			<!-- A secure e-mail address appropriate for healthcare communications-->
+			<telecom value="mailto:adameveryman@direct.sampleHISP.com" use="H"/>
+			<patient>
+				<name use="L">
+					<!-- L is "Legal" from HL7 EntityNameUse 2.16.840.1.113883.5.45 -->
+					<prefix>Mr.</prefix>
+					<given>Adam</given>
+					<given>A.</given>
+					<given qualifier="CL">Ace</given>
+					<family>Everyman</family>
+				</name>
+				<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male"/>
+				<birthTime value="19551125"/>
+				<maritalStatusCode code="M" displayName="Married" codeSystem="2.16.840.1.113883.5.2" codeSystemName="MaritalStatusCode"/>
+				<religiousAffiliationCode code="1013" displayName="Christian (non-Catholic, non-specific)" codeSystemName="HL7 Religious Affiliation " codeSystem="2.16.840.1.113883.1.11.19185"/>
+				<raceCode code="2106-3" displayName="White" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC"/>
+				<ethnicGroupCode code="2186-5" displayName="Not Hispanic or Latino" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC"/>
+				<!-- This person does not have a guardian -->
+				<birthplace>
+					<place>
+						<addr>
+							<city>Pointe-Claire</city>
+							<state>QC</state>
+							<postalCode>H9R 1E4</postalCode>
+							<country>CAN</country>
+						</addr>
+					</place>
+				</birthplace>
+				<languageCommunication>
+					<languageCode code="fr-CN" sdtc:valueSet="2.16.840.1.113883.1.11.11526"/>
+					<modeCode code="RWR" displayName="Recieve Written" codeSystem="2.16.840.1.113883.5.60" codeSystemName="LanguageAbilityMode"/>
+					<proficiencyLevelCode code="E" displayName="Excellent" codeSystem="2.16.840.1.113883.5.61" codeSystemName="LanguageAbilityProficiency"/>
+					<preferenceInd value="true"/>
+				</languageCommunication>
+			</patient>
+			<providerOrganization>
+				<!-- The person receives care from this organization. -->
+				<!-- id using HL7 example OID. -->
+				<id extension="999.2" root="2.16.840.1.113883.19"/>
+				<!-- NPI for the organization -->
+				<id extension="1234567890" root="2.16.840.1.113883.4.6"/>
+				<name>Good Health Internal Medicine</name>
+				<telecom use="WP" value="tel:(781)555-1212"/>
+				<addr>
+					<streetAddressLine>100 Health Drive</streetAddressLine>
+					<city>Boston</city>
+					<state>MA</state>
+					<postalCode>02368</postalCode>
+					<country>USA</country>
+				</addr>
+			</providerOrganization>
+		</patientRole>
+	</recordTarget>
+	<author>
+		<time value="20121126145000-0500"/>
+		<assignedAuthor>
+			<!-- Identifier based on the person's Direct Address which is a secure and trusted mechanism for identifying 
+				a person discretely. The root of the id is the OID of the HISP Assigning Authority for the Direct Address-->
+			<id extension="adameveryman@direct.sampleHISP.com" root="2.16.123.123.12345.1234"/>
+			<!-- 
+				The PGD Header Template includes further conformance constraints on the code element to encode the personal or legal 
+				relationship of the author when they are person who is not acting in the role of a clinician.. 
+			-->
+			<code code="ONESELF" displayName="Self" codeSystem="2.16.840.1.113883.5.111" codeSystemName="HL7 Role code"/>
+			<addr use="HP">
+				<!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+				<streetAddressLine>2222 Home Street</streetAddressLine>
+				<city>Boston</city>
+				<state>MA</state>
+				<postalCode>02368</postalCode>
+				<!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+				<country>US</country>
+			</addr>
+			<!-- HP is "primary home" from HL7 AddressUse 2.16.840.1.113883.5.1119 -->
+			<telecom value="tel:(555)555-2004" use="HP"/>
+			<assignedPerson>
+				<name>
+					<given>Adam</given>
+					<family>Everyman</family>
+				</name>
+			</assignedPerson>
+		</assignedAuthor>
+	</author>
+	<!-- The Author below documents the system used to create the Patient Generated Document.
+		In this scenario the Patient is using a fictitious PHR Service called MyPersonalHealthRecord.com. 
+		It is a service which consumers purchase to receive and create their electronic health records. 
+		It is not a Patient Portal that is tethered to some other EMR or medical insurance records system.
+		The service is developed by a company call ACME PHR Solutions,Inc. -->
+	<author>
+		<time value="20121126145000-0500"/>
+		<assignedAuthor>
+			<id extension="777.11" root="2.16.840.1.113883.19"/>
+			<addr nullFlavor="NA"/>
+			<telecom nullFlavor="NA"/>
+			<assignedAuthoringDevice>
+				<manufacturerModelName>ACME PHR</manufacturerModelName>
+				<softwareName>MyPHR v1.0</softwareName>
+			</assignedAuthoringDevice>
+			<representedOrganization>
+				<id extension="999" root="1.2.3.4.5.6.7.8.9.12345"/>
+				<name>ACME PHR Solutions,Inc.</name>
+				<telecom use="WP" value="tel:123-123-12345"/>
+				<addr>
+					<streetAddressLine>4 Future Way</streetAddressLine>
+					<city>Provenance</city>
+					<state>RI</state>
+					<postalCode>02919</postalCode>
+				</addr>
+			</representedOrganization>
+		</assignedAuthor>
+	</author>
+	<dataEnterer>
+		<assignedEntity>
+			<!-- Identifier based on the person's Direct Address which is a secure and trusted mechanism for identifying 
+				a person discretely. The root of the id is the OID of the HISP Assigning Authority for the Direct Address-->
+			<id extension="adameveryman@direct.sampleHISP.com" root="2.16.123.123.12345.1234"/>
+			<code code="ONESELF" displayName="Self" codeSystem="2.16.840.1.113883.5.111" codeSystemName="HL7 Role code"/>
+			<addr use="HP">
+				<!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+				<streetAddressLine>2222 Home Street</streetAddressLine>
+				<city>Boston</city>
+				<state>MA</state>
+				<postalCode>02368</postalCode>
+				<!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+				<country>US</country>
+			</addr>
+			<!-- HP is "primary home" from HL7 AddressUse 2.16.840.1.113883.5.1119 -->
+			<telecom value="tel:(555)555-2004" use="HP"/>
+			<assignedPerson>
+				<name>
+					<given>Adam</given>
+					<family>Everyman</family>
+				</name>
+			</assignedPerson>
+		</assignedEntity>
+	</dataEnterer>
+	<informant>
+		<assignedEntity>
+			<!-- id using HL7 example OID. -->
+			<id extension="999.1" root="2.16.840.1.113883.19"/>
+			<code code="ONESELF" displayName="Self" codeSystem="2.16.840.1.113883.5.111" codeSystemName="HL7 Role code"/>
+			<addr use="HP">
+				<!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+				<streetAddressLine>2222 Home Street</streetAddressLine>
+				<city>Boston</city>
+				<state>MA</state>
+				<postalCode>02368</postalCode>
+				<!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+				<country>US</country>
+			</addr>
+			<!-- HP is "primary home" from HL7 AddressUse 2.16.840.1.113883.5.1119 -->
+			<telecom value="tel:(555)555-2004" use="HP"/>
+			<assignedPerson>
+				<name>
+					<given>Adam</given>
+					<family>Everyman</family>
+				</name>
+			</assignedPerson>
+		</assignedEntity>
+	</informant>
+	<informant>
+		<relatedEntity classCode="NOK">
+			<code code="SIS" displayName="Sister" codeSystem="2.16.840.1.113883.11.20.12.1" codeSystemName="Personal And Legal Relationship Role Type"/>
+			<addr use="HP">
+				<!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+				<streetAddressLine>2222 Home Street</streetAddressLine>
+				<city>Boston</city>
+				<state>MA</state>
+				<postalCode>02368</postalCode>
+				<!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+				<country>US</country>
+			</addr>
+			<!-- HP is "primary home" from HL7 AddressUse 2.16.840.1.113883.5.1119 -->
+			<telecom value="tel:(555)555-2004" use="HP"/>
+			<relatedPerson>
+				<!-- relatedPerson/id is invalid without the use of an stdc extension. 
+					Patient Generated Document comittee elected to keep this id in as is for ballot -->
+				<name>
+					<given>Alice</given>
+					<family>Everyman</family>
+				</name>
+			</relatedPerson>
+		</relatedEntity>
+	</informant>
+	<!-- We got this far by 6/18/2013 -->
+	<custodian>
+		<assignedCustodian>
+			<representedCustodianOrganization>
+				<!-- id using HL7 example OID. -->
+				<id extension="999.3" root="2.16.840.1.113883.19"/>
+				<name>MyPersonalHealthRecord.Com</name>
+				<telecom value="tel:(555)555-1212" use="WP"/>
+				<addr use="WP">
+					<streetAddressLine>123 Boylston Street</streetAddressLine>
+					<city>Blue Hill</city>
+					<state>MA</state>
+					<postalCode>02368</postalCode>
+					<country>USA</country>
+				</addr>
+			</representedCustodianOrganization>
+		</assignedCustodian>
+	</custodian>
+	<!-- Jessi and I got this far - on 6/24. -->
+	<!-- The document is intended for multiple recipients, Adam himself and his PCP physician. -->
+	<informationRecipient>
+		<intendedRecipient>
+			<!-- Identifier based on the person's Direct Address which is a secure and trusted mechanism for identifying 
+				a person discretely. The root of the id is the OID of the HISP Assigning Authority for the Direct Address-->
+			<id extension="adameveryman@direct.sampleHISP.com" root="2.16.123.123.12345.1234"/>
+			<informationRecipient>
+				<name>
+					<given>Adam</given>
+					<family>Everyman</family>
+				</name>
+			</informationRecipient>
+			<receivedOrganization>
+				<!-- id using HL7 example OID. -->
+				<id extension="999.3" root="2.16.840.1.113883.19"/>
+				<name>MyPersonalHealthRecord.Com</name>
+			</receivedOrganization>
+		</intendedRecipient>
+	</informationRecipient>
+	<informationRecipient>
+		<intendedRecipient>
+			<!-- Unique/Trusted id using HL7 example OID. -->
+			<id extension="999.4" root="2.16.840.1.113883.19"/>
+			<!-- The physician's NPI number -->
+			<id extension="1122334455" root="2.16.840.1.113883.4.6"/>
+			<!-- The physician's Direct Address -->
+			<!-- Identifier based on the person's Direct Address which is a secure and trusted mechanism for identifying 
+				a person discretely. The root of the id is the OID of the HISP Assigning Authority for the Direct Address-->
+			<id extension="DrP@direct.sampleHISP2.com" root="2.16.123.123.12345.4321"/>
+			<telecom use="WP" value="tel:(781)555-1212"/>
+			<telecom use="WP" value="mailto:DrP@direct.sampleHISP2.com"/>
+			<informationRecipient>
+				<name>
+					<prefix>Dr.</prefix>
+					<given>Patricia</given>
+					<family>Primary</family>
+				</name>
+			</informationRecipient>
+			<receivedOrganization>
+				<!-- Unique/Trusted id using HL7 example OID. -->
+				<id extension="999.2" root="2.16.840.1.113883.19"/>
+				<!-- NPI for the organization -->
+				<id extension="1234567890" root="2.16.840.1.113883.4.6"/>
+				<name>Good Health Internal Medicine</name>
+				<telecom use="WP" value="tel:(781)555-1212"/>
+				<addr>
+					<streetAddressLine>100 Health Drive</streetAddressLine>
+					<city>Boston</city>
+					<state>MA</state>
+					<postalCode>02368</postalCode>
+					<country>USA</country>
+				</addr>
+			</receivedOrganization>
+		</intendedRecipient>
+	</informationRecipient>
+	<legalAuthenticator>
+		<time value="20121126145000-0500"/>
+		<signatureCode code="S"/>
+		<assignedEntity>
+			<!-- Identifier based on the person's Direct Address which is a secure and trusted mechanism for identifying 
+				a person discretely. The root of the id is the OID of the HISP Assigning Authority for the Direct Address-->
+			<id extension="adameveryman@direct.sampleHISP.com" root="2.16.123.123.12345.1234"/>
+			<addr use="HP">
+				<!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+				<streetAddressLine>2222 Home Street</streetAddressLine>
+				<city>Boston</city>
+				<state>MA</state>
+				<postalCode>02368</postalCode>
+				<!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+				<country>US</country>
+			</addr>
+			<!-- HP is "primary home" from HL7 AddressUse 2.16.840.1.113883.5.1119 -->
+			<telecom value="tel:(555)555-2004" use="HP"/>
+			<assignedPerson>
+				<name>
+					<given>Adam</given>
+					<family>Everyman</family>
+				</name>
+			</assignedPerson>
+		</assignedEntity>
+	</legalAuthenticator>
+	<authenticator>
+		<time value="20121126145000-0500"/>
+		<signatureCode code="S"/>
+		<assignedEntity>
+			<!-- Identifier based on the person's Direct Address which is a secure and trusted mechanism for identifying 
+				a person discretely. The root of the id is the OID of the HISP Assigning Authority for the Direct Address-->
+			<id extension="adameveryman@direct.sampleHISP.com" root="2.16.123.123.12345.1234"/>
+			<addr use="HP">
+				<!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+				<streetAddressLine>2222 Home Street</streetAddressLine>
+				<city>Boston</city>
+				<state>MA</state>
+				<postalCode>02368</postalCode>
+				<!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+				<country>US</country>
+			</addr>
+			<!-- HP is "primary home" from HL7 AddressUse 2.16.840.1.113883.5.1119 -->
+			<telecom value="tel:(555)555-2004" use="HP"/>
+			<assignedPerson>
+				<name>
+					<given>Adam</given>
+					<family>Everyman</family>
+				</name>
+			</assignedPerson>
+		</assignedEntity>
+	</authenticator>
+	<participant typeCode="IND">
+		<time xsi:type="IVL_TS">
+			<low value="19551125"/>
+			<high value="20121126"/>
+		</time>
+		<associatedEntity classCode="NOK">
+			<code code="MTH" codeSystem="2.16.840.1.113883.5.111"/>
+			<addr>
+				<streetAddressLine>17 Daws Rd.</streetAddressLine>
+				<city>Blue Bell</city>
+				<state>MA</state>
+				<postalCode>02368</postalCode>
+				<country>US</country>
+			</addr>
+			<telecom value="tel:(555)555-2006" use="WP"/>
+			<associatedPerson>
+				<name>
+					<prefix>Mrs.</prefix>
+					<given>Martha</given>
+					<family>Mum</family>
+				</name>
+			</associatedPerson>
+		</associatedEntity>
+	</participant>
+	<inFulfillmentOf>
+		<order>
+			<!-- The root identifies the EMR system at the Good Health Internal Medicine Practice -->
+			<id extension="Ord12345" root="2.16.840.1.113883.4.6.1234567890.4"/>
+		</order>
+	</inFulfillmentOf>
+	<documentationOf typeCode="DOC">
+		<!-- Service Event class code is no longer constrained to be PCPR as with CCD or C-CDA-CCD -->
+		<serviceEvent classCode="ACT">
+			<effectiveTime>
+				<low value="19551125"/>
+				<high value="20121126145000"/>
+			</effectiveTime>
+			<performer typeCode="PRF">
+				<functionCode code="PCP" displayName="Primary Care Provider" codeSystem="2.16.840.1.113883.5.88" codeSystemName="Participation Function">
+					<originalText>Primary Care Provider (PCP)</originalText>
+				</functionCode>
+				<time>
+					<low value="201101"/>
+				</time>
+				<assignedEntity>
+					<!-- Unique/trusted id using HL7 example OID. -->
+					<id extension="999.4" root="2.16.840.1.113883.19"/>
+					<!-- The physician's NPI number -->
+					<id extension="1122334455" root="2.16.840.1.113883.4.6"/>
+					<!-- Type of Physician -->
+					<code code="207R00000X" displayName="Internal Medicine" codeSystemName="NUCC Health Care Provider Taxonomy" codeSystem="2.16.840.1.113883.6.101"/>
+					<addr>
+						<streetAddressLine>100 Health Drive</streetAddressLine>
+						<city>Boston</city>
+						<state>MA</state>
+						<postalCode>02368</postalCode>
+						<country>USA</country>
+					</addr>
+					<telecom use="WP" value="tel:(781)555-1212"/>
+					<assignedPerson>
+						<name>
+							<prefix>Dr.</prefix>
+							<given>Patricia</given>
+							<family>Primary</family>
+						</name>
+					</assignedPerson>
+					<representedOrganization>
+						<!-- Unique/Trusted id using HL7 example OID. -->
+						<id extension="999.2" root="2.16.840.1.113883.19"/>
+						<name>Good Health Internal Medicine</name>
+						<telecom use="WP" value="tel:(781)555-1212"/>
+						<addr>
+							<streetAddressLine>100 Health Drive</streetAddressLine>
+							<city>Boston</city>
+							<state>MA</state>
+							<postalCode>02368</postalCode>
+							<country>USA</country>
+						</addr>
+					</representedOrganization>
+				</assignedEntity>
+			</performer>
+			<performer typeCode="PRF">
+				<functionCode code="PCP" displayName="Primary Care Provider" codeSystem="2.16.840.1.113883.5.88" codeSystemName="Participation Function">
+					<originalText>Primary Care Provider (PCP)</originalText>
+				</functionCode>
+				<time>
+					<low value="1971"/>
+					<high value="201101"/>
+				</time>
+				<assignedEntity>
+					<!-- Unique/trusted id using HL7 example OID. -->
+					<id extension="99.5" root="2.16.840.1.113883.19"/>
+					<!-- The physician's NPI number -->
+					<id extension="1122334466" root="2.16.840.1.113883.4.6"/>
+					<!-- Type of Physician -->
+					<code code="207Q00000X" displayName="Family Medicine" codeSystemName="NUCC Health Care Provider Taxonomy" codeSystem="2.16.840.1.113883.6.101">
+						<originalText>General Practitioner</originalText>
+					</code>
+					<addr>
+						<streetAddressLine>103 Rue Champlain</streetAddressLine>
+						<city>Roxboro</city>
+						<state>QC</state>
+						<postalCode>H8Y 3S6</postalCode>
+						<country>CAN</country>
+					</addr>
+					<telecom use="WP" value="tel:514-555-1212"/>
+					<assignedPerson>
+						<name>
+							<prefix>Dr.</prefix>
+							<given>Fay</given>
+							<family>Family</family>
+						</name>
+					</assignedPerson>
+					<representedOrganization>
+						<!-- Unique/Trusted id using HL7 example OID. -->
+						<id extension="999.5" root="2.16.840.1.113883.19"/>
+						<name>Roxboro Family Practice</name>
+						<telecom use="WP" value="tel:514-555-1212"/>
+						<addr>
+							<streetAddressLine>103 Rue Champlain</streetAddressLine>
+							<city>Roxboro</city>
+							<state>QC</state>
+							<postalCode>H8Y 3S6</postalCode>
+							<country>CAN</country>
+						</addr>
+					</representedOrganization>
+				</assignedEntity>
+			</performer>
+			<performer typeCode="PRF">
+				<functionCode code="PCP" displayName="Primary Care Provider" codeSystem="2.16.840.1.113883.5.88" codeSystemName="Participation Function">
+					<originalText>Primary Care Provider (PCP)</originalText>
+				</functionCode>
+				<time>
+					<low value="19551125"/>
+					<high value="1971"/>
+				</time>
+				<assignedEntity>
+					<!-- Unique/Trusted id using HL7 example OID. -->
+					<id extension="999.6" root="2.16.840.1.113883.19"/>
+					<!-- The physician's NPI number -->
+					<id extension="1122334477" root="2.16.840.1.113883.4.6"/>
+					<!-- Type of Physician -->
+					<code code="208000000X" displayName="Pediatrics" codeSystemName="NUCC Health Care Provider Taxonomy" codeSystem="2.16.840.1.113883.6.101">
+						<originalText>Pediatrician</originalText>
+					</code>
+					<addr>
+						<streetAddressLine>10 Rue De Seville</streetAddressLine>
+						<city>Pointe-Claire</city>
+						<state>QC</state>
+						<postalCode>H9R 1E9</postalCode>
+						<country>CAN</country>
+					</addr>
+					<telecom use="WP" value="tel:514-333-1234"/>
+					<assignedPerson>
+						<name>
+							<prefix>Dr.</prefix>
+							<given>Karen</given>
+							<family>Kidder</family>
+						</name>
+					</assignedPerson>
+					<representedOrganization>
+						<!-- Unique/Trusted id using HL7 example OID -->
+						<id extension="999.7" root="2.16.840.1.113883.19"/>
+						<name>Pointe-Claire Pediatrics</name>
+						<telecom use="WP" value="tel:514-333-1234"/>
+						<addr>
+							<streetAddressLine>10 Rue De Seville</streetAddressLine>
+							<city>Pointe-Claire</city>
+							<state>QC</state>
+							<postalCode>H9R 1E9</postalCode>
+							<country>CAN</country>
+						</addr>
+					</representedOrganization>
+				</assignedEntity>
+			</performer>
+		</serviceEvent>
+	</documentationOf>
+	<authorization typeCode="AUTH">
+		<consent classCode="CONS" moodCode="EVN">
+			<id root="629deb70-5306-11df-9879-0800200c9a66"/>
+			<code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="64293-4" displayName="Procedure consent"/>
+			<statusCode code="completed"/>
+		</consent>
+	</authorization>
+	<!-- ********************************************************
+		
+		CDA Body – 
+		Use sections and entries defined by templates in the HL7 Consolidate CDA 
+		
+		******************************************************** -->
+	<component>
+		<structuredBody>
+			<component>
+				<section/>
+			</component>
+		</structuredBody>
+	</component>
+</ClinicalDocument>
