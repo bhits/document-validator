@@ -12,8 +12,4 @@ public class ValidationRequestDto {
     private byte[] document;
 
     private Optional<String> documentEncoding = Optional.empty();
-
-    public void setDocumentEncoding(String documentEncoding) {
-        this.documentEncoding = Optional.of(documentEncoding);
-    }
 }
