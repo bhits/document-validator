@@ -70,14 +70,15 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
     @Override
     public ValidationResponseDto validateDocumentFile(MultipartFile documentFile) {
         ValidationRequestDto requestDto = new ValidationRequestDto();
-
+        ValidationResponseDto responseDto;
         try {
             requestDto.setDocument(documentFile.getBytes());
+            responseDto = validateDocument(requestDto);
         } catch (IOException e) {
             log.error("There is no file or invalid file", e);
             throw new UnsupportedDocumentTypeValidationException("There is no file or invalid file", e);
         }
-        return validateDocument(requestDto);
+        return responseDto;
     }
 
     private ValidationResponseDto runC32Validator(ValidationRequestDto requestDto, DocumentType documentType) {

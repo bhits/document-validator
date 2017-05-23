@@ -15,7 +15,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.ArrayList;
@@ -117,5 +119,56 @@ public class DocumentValidationControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsBytes(requestDto)))
                 .andExpect(status().isPreconditionFailed());
+    }
+
+    @Test
+    public void testValidateClinicalDocumentFile() throws Exception {
+        // Arrange
+        final DocumentType documentType = DocumentType.CCDA_R1_1_CCD_V1;
+        final boolean isDocumentValid = false;
+
+        List<DocumentValidationResultDetail> resultDetails = new ArrayList<>();
+        final ValidationCriteria validationCriteria = ValidationCriteria.C_CDA_IG_ONLY;
+        final String diagnosticType = "diagnosticType";
+        final int count = 1;
+        List<ValidationDiagnosticStatistics> diagnosticStatisticsList = new ArrayList<>();
+        diagnosticStatisticsList.add(ValidationDiagnosticStatistics.builder()
+                .diagnosticType(diagnosticType)
+                .count(count)
+                .build());
+        DocumentValidationResultSummary resultSummary = DocumentValidationResultSummary.builder()
+                .validationCriteria(validationCriteria)
+                .diagnosticStatistics(diagnosticStatisticsList)
+                .build();
+
+        final String description = "description";
+        final ValidationDiagnosticType validationDiagnosticType = ValidationDiagnosticType.CCDA_ERROR;
+        final String xPath = "xPath";
+        final String documentLineNumber = "documentLineNumber";
+        final boolean isSchemaError = true;
+        final boolean isIGIssue = true;
+        resultDetails.add(DocumentValidationResultDetail.builder()
+                .description(description)
+                .diagnosticType(validationDiagnosticType)
+                .xPath(xPath)
+                .documentLineNumber(documentLineNumber)
+                .isIGIssue(isIGIssue)
+                .isSchemaError(isSchemaError)
+                .build());
+
+        ValidationResponseDto validationResponseDto = ValidationResponseDto.builder()
+                .documentType(documentType)
+                .isDocumentValid(isDocumentValid)
+                .validationResultDetails(resultDetails)
+                .validationResultSummary(resultSummary)
+                .build();
+
+        MockMultipartFile documentFile = new MockMultipartFile("documentFile", "document.xml".getBytes());
+        when(documentValidationService.validateDocumentFile(documentFile)).thenReturn(validationResponseDto);
+
+        // Act and Assert
+        mvc.perform(MockMvcRequestBuilders.fileUpload("/multipartFileDocumentValidation")
+                .file(documentFile))
+                .andExpect(status().isOk());
     }
 }
