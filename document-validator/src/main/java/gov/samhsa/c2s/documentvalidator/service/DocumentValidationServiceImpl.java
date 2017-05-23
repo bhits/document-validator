@@ -6,6 +6,7 @@ import gov.samhsa.c2s.common.validation.exception.XmlDocumentReadFailureExceptio
 import gov.samhsa.c2s.documentvalidator.config.DocumentValidatorProperties;
 import gov.samhsa.c2s.documentvalidator.infrastructure.CcdaValidator;
 import gov.samhsa.c2s.documentvalidator.infrastructure.ValidationCriteria;
+import gov.samhsa.c2s.documentvalidator.infrastructure.ValidationType;
 import gov.samhsa.c2s.documentvalidator.infrastructure.exception.C32ValidatorRunningException;
 import gov.samhsa.c2s.documentvalidator.service.dto.*;
 import gov.samhsa.c2s.documentvalidator.service.exception.UnsupportedDocumentTypeValidationException;
@@ -70,14 +71,15 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
     @Override
     public ValidationResponseDto validateDocumentFile(MultipartFile documentFile) {
         ValidationRequestDto requestDto = new ValidationRequestDto();
-
+        ValidationResponseDto responseDto;
         try {
             requestDto.setDocument(documentFile.getBytes());
+            responseDto = validateDocument(requestDto);
         } catch (IOException e) {
             log.error("There is no file or invalid file", e);
             throw new UnsupportedDocumentTypeValidationException("There is no file or invalid file", e);
         }
-        return validateDocument(requestDto);
+        return responseDto;
     }
 
     private ValidationResponseDto runC32Validator(ValidationRequestDto requestDto, DocumentType documentType) {
@@ -155,6 +157,7 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
 
         return DocumentValidationResultSummary.builder()
                 .validationCriteria(ValidationCriteria.C_CDA_IG_ONLY)
+                .validationType(determineValidationType())
                 .diagnosticStatistics(Arrays.asList(ccdaError, ccdaWarning, ccdaInfo))
                 .build();
     }
@@ -165,5 +168,13 @@ public class DocumentValidationServiceImpl implements DocumentValidationService 
                 .forEach(resultDetail -> resultMetaData.addCount(resultDetail.getDiagnosticType()));
 
         return resultMetaData;
+    }
+
+    private ValidationType determineValidationType() {
+        if (documentValidatorProperties.isEnabledSchematronValidation()) {
+            return ValidationType.FULL_VALIDATION;
+        } else {
+            return ValidationType.SCHEMA_VALIDATION_ONLY;
+        }
     }
 }
