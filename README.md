@@ -1,6 +1,6 @@
 # Document Validator Service
 
-The Document Validator Service is responsible for validating C32, C-CDA R1 and C-CDA R2 clinical documents. It is a RESTful Web Service wrapper around [MDHT](https://www.projects.openhealthtools.org/sf/projects/mdht/) (Model Driven Health Tools) libraries. It does schema validation for C32 and both schema and schematron validation for C-CDA and returns the validation results from MDHT in the response. Document Validator Service is used directly by [DSS](https://github.com/bhits/dss) (Document Segmentation Service) to validate the document before and after the segmentation.
+The Document Validator Service is responsible for validating C32, C-CDA R1.1 and C-CDA R2.1 clinical documents. It is a RESTful Web Service wrapper around [MDHT](https://www.projects.openhealthtools.org/sf/projects/mdht/) (Model Driven Health Tools) libraries. It does schema validation for C32 and both schema and schematron validation for C-CDA and returns the validation results from MDHT in the response. Document Validator Service is used directly by [DSS](https://github.com/bhits/dss) (Document Segmentation Service) to validate the document before and after the segmentation.
 
 ## Build
 
@@ -52,7 +52,7 @@ To build the project, navigate to the folder that contains the [`pom.xml` file](
 
 ### Prerequisites
 
-This is a [Spring Boot](https://projects.spring.io/spring-boot) project but it requires a external servlet container to run it. [Apache Tomcat 8](http://tomcat.apache.org/) is the recommended application server to run this application.
+This is a [Spring Boot](https://projects.spring.io/spring-boot) project. Since running the project within the Spring Boot embedded servlet container has conflicts with [Eclipse Modeling Framework (EMF)](http://www.eclipse.org/modeling/emf/), it requires a external servlet container to run it. [Apache Tomcat 8](http://tomcat.apache.org/) is the recommended application server to run this application.
 
 ### Deployment
 

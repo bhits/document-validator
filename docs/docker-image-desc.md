@@ -1,6 +1,6 @@
 # Short Description
 
-The Document Validator is responsible for responsible for validating C32, C-CDA R1 and C-CDA R2 clinical documents.
+The Document Validator is responsible for responsible for validating C32, C-CDA R1.1 and C-CDA R2.1 clinical documents.
 
 # Full Description
 
@@ -14,7 +14,7 @@ For more information about this image, the source code, and its history, please 
 
 # What is Document Validator?
 
-The Document Validator Service is responsible for validating C32, C-CDA R1 and C-CDA R2 clinical documents. It is a RESTFul Web Service wrapper around [MDHT](https://www.projects.openhealthtools.org/sf/projects/mdht/) (Model Driven Health Tools) libraries. It does schema validation for C32 and both schema and schematron validation for C-CDA and returns the validation results from MDHT in the response. Document Validator Service is used directly by [DSS](https://github.com/bhits/dss) (Document Segmentation Service) to validate the document before and after the segmentation.
+The Document Validator Service is responsible for validating C32, C-CDA R1.1 and C-CDA R2.1 clinical documents. It is a RESTFul Web Service wrapper around [MDHT](https://www.projects.openhealthtools.org/sf/projects/mdht/) (Model Driven Health Tools) libraries. It does schema validation for C32 and both schema and schematron validation for C-CDA and returns the validation results from MDHT in the response. Document Validator Service is used directly by [DSS](https://github.com/bhits/dss) (Document Segmentation Service) to validate the document before and after the segmentation.
 For more information and related downloads for Consent2Share, please visit [Consent2Share](https://bhits.github.io/consent2share/).
 
 # How to use this image
