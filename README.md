@@ -52,15 +52,16 @@ To build the project, navigate to the folder that contains the [`pom.xml` file](
 
 ### Prerequisites
 
-This is a [Spring Boot](https://projects.spring.io/spring-boot) project. Since running the project within the Spring Boot embedded servlet container has conflicts with [Eclipse Modeling Framework (EMF)](http://www.eclipse.org/modeling/emf/), it requires a external servlet container to run it. [Apache Tomcat 8](http://tomcat.apache.org/) is the recommended application server to run this application.
+This is a [Spring Boot](https://projects.spring.io/spring-boot) project. Since running the project within the Spring Boot embedded servlet container has conflicts with [Eclipse Modeling Framework (EMF)](http://www.eclipse.org/modeling/emf/), it requires a external servlet container to run it. [Apache Tomcat 8](http://tomcat.apache.org/) is the recommended application server to run this application. The expected default context path for this service in a development (single application server) environment are /document-validator. In Docker environment, use the same /document-validator context path.
 
 ### Deployment
 
 For easy deployment in single application server environment:
 
 1. Find the `war` file located in `\document-validator\target` folder after building the project.
-2. Copy it to Tomcat's `webapps` folder
-3. Start up Tomcat.
+2. Rename the file to document-validator.war
+3. Copy it to Tomcat's `webapps` folder
+4. Start up Tomcat.
 
 Please refer to [Tomcat Web Application Deployment](http://tomcat.apache.org/tomcat-8.0-doc/deployer-howto.html) documentation for more details about Tomcat deployment.
 
