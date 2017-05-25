@@ -1,5 +1,6 @@
 package gov.samhsa.c2s.documentvalidator.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import gov.samhsa.c2s.documentvalidator.infrastructure.ValidationCriteria;
 import gov.samhsa.c2s.documentvalidator.infrastructure.ValidationType;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class DocumentValidationResultSummary {
     private ValidationCriteria validationCriteria;
     private ValidationType validationType;
