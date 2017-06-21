@@ -68,7 +68,7 @@ Please refer to [Tomcat Web Application Deployment](http://tomcat.apache.org/tom
 ## Configure
 
 
-This service utilizes [`Configuration Server`](https://github.com/bhits/config-server) which is based on [Spring Cloud Config](https://github.com/spring-cloud/spring-cloud-config) to manage externalized configuration, which is stored in a `Configuration Data Git Repository`. We provide a [`Default Configuration Data Git Repository`]( https://github.com/bhits/c2s-config-data).
+This service utilizes [`Configuration Server`](https://github.com/bhits-dev/config-server) which is based on [Spring Cloud Config](https://github.com/spring-cloud/spring-cloud-config) to manage externalized configuration, which is stored in a `Configuration Data Git Repository`. We provide a [`Default Configuration Data Git Repository`]( https://github.com/bhits-dev/c2s-config-data).
 
 This service can run with the default configuration, which is targeted for a local development environment. Default configuration data is from three places: `bootstrap.yml`, `application.yml`, and the data which `Configuration Server` reads from `Configuration Data Git Repository`. Both `bootstrap.yml` and `application.yml` files are located in the `resources` folder of this source code.
 
@@ -89,7 +89,7 @@ version: '2'
 services:
 ...
   document-validator.c2s.com:
-    image: "bhits/document-validator:latest"
+    image: "bhitsdev/document-validator:latest"
     volumes:
       - /path/on/dockerhost/server.xml:/usr/local/tomcat/conf/server.xml
       - /path/on/dockerhost/ssl_keystore.keystore:/ssl_keystore.keystore
@@ -110,7 +110,7 @@ services:
 
 ### Override Java CA Certificates Store In Docker Environment
 
-Java has a default CA Certificates Store that allows it to trust well-known certificate authorities. For development and testing purposes, one might want to trust additional self-signed certificates. In order to override the default Java CA Certificates Store in a Docker container, one can mount a custom `cacerts` file over the default one in the Docker image as follows: `docker run -d -v "/path/on/dockerhost/to/custom/cacerts:/etc/ssl/certs/java/cacerts" bhits/document-validator:latest`
+Java has a default CA Certificates Store that allows it to trust well-known certificate authorities. For development and testing purposes, one might want to trust additional self-signed certificates. In order to override the default Java CA Certificates Store in a Docker container, one can mount a custom `cacerts` file over the default one in the Docker image as follows: `docker run -d -v "/path/on/dockerhost/to/custom/cacerts:/etc/ssl/certs/java/cacerts" bhits-dev/document-validator:latest`
 
 *NOTE: The `cacerts` references given in the both sides of volume mapping above are files, not directories.*
 
@@ -121,14 +121,14 @@ Java has a default CA Certificates Store that allows it to trust well-known cert
 [//]: # (## Contribute)
 
 ## License
-View [license](https://github.com/bhits/document-validator/blob/master/LICENSE) information for the software contained in this repository.
+View [license](https://github.com/bhits-dev/document-validator/blob/master/LICENSE) information for the software contained in this repository.
 
 ## Contact
 
-If you have any questions, comments, or concerns please see [Consent2Share](https://bhits.github.io/consent2share/) project site.
+If you have any questions, comments, or concerns please see [Consent2Share](https://bhits-dev.github.io/consent2share/) project site.
 
 ## Report Issues
 
-Please use [GitHub Issues](https://github.com/bhits/document-validator/issues) page to report issues.
+Please use [GitHub Issues](https://github.com/bhits-dev/document-validator/issues) page to report issues.
 
 [//]: # (License)
