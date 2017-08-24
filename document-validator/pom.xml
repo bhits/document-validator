@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.3.RELEASE</version>
+        <version>1.5.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -22,14 +22,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <spring-cloud.version>Dalston.RELEASE</spring-cloud.version>
+        <spring-cloud.version>Dalston.SR3</spring-cloud.version>
         <git-commit-id-plugin.version>2.2.1</git-commit-id-plugin.version>
         <docker.maven.version>0.4.13</docker.maven.version>
+        <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
         <!-- MDHT core library versions -->
         <mdht-core.version>2.6.3.20170323</mdht-core.version>
         <mdht-plugins.version>3.0.0.201703230502</mdht-plugins.version>
         <!-- C2S common library version -->
         <c2s-common-libraries.version>1.11.0</c2s-common-libraries.version>
+        <c2s.document-converter.version>1.16.0-SNAPSHOT</c2s.document-converter.version>
     </properties>
 
     <dependencies>
@@ -101,7 +103,7 @@
         <dependency>
             <groupId>gov.samhsa.c2s</groupId>
             <artifactId>document-converter</artifactId>
-            <version>${c2s-common-libraries.version}</version>
+            <version>${c2s.document-converter.version}</version>
         </dependency>
 
         <!-- START MDHT Dependencies -->
@@ -215,6 +217,47 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${maven-enforcer-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>enforce-banned-dependencies</id>
+                        <goals>
+                            <goal>enforce</goal>
+                            <goal>display-info</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <excludes>
+                                        <exclude>de.codecentric:spring-boot-admin-sample-eureka:(,1.4.4]</exclude>
+                                        <exclude>com.fasterxml.jackson.core:jackson-databind:(,2.8.8]</exclude>
+                                        <exclude>org.apache.tomcat.embed:tomcat-embed-core:(,8.5.12]</exclude>
+                                        <exclude>org.apache.tomcat.embed:tomcat-embed-core:[9.0.0.M1,9.0.0.M18]</exclude>
+                                        <exclude>org.codehaus.jackson:jackson-mapper-asl:(,1.9.13]</exclude>
+                                        <exclude>org.drools:drools-core:(,6.2.0.Final)</exclude>
+                                        <exclude>org.openwms.configuration:(,1.0.0]</exclude>
+                                        <exclude>org.openwms:org.openwms.configuration:(,1.0.0]</exclude>
+                                        <exclude>org.openwms:org.openwms.services:(,1.0.0]</exclude>
+                                        <exclude>xerces:xercesImpl:(,2.11.0]</exclude>
+
+                                        <!--Banned dependencies that are found are commented -->
+                                        <!--<exclude>ch.qos.logback:logback-classic:(,1.1.11]</exclude>-->
+                                        <!--<exclude>com.thoughtworks.xstream:xstream:(,1.4.9]</exclude>-->
+                                        <!--<exclude>io.netty:netty-handler:(,4.1.1.Final)</exclude>-->
+                                        <!--<exclude>org.bouncycastle:bcprov-jdk15on:(,1.55]</exclude>-->
+                                    </excludes>
+                                </bannedDependencies>
+                                <dependencyConvergence/>
+                                <banDuplicatePomDependencyVersions/>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>pl.project13.maven</groupId>
