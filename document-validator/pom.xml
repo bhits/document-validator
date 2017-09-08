@@ -31,7 +31,7 @@
         <mdht-plugins.version>3.0.0.201703230502</mdht-plugins.version>
         <!-- C2S common library version -->
         <c2s-common-libraries.version>1.11.0</c2s-common-libraries.version>
-        <c2s.document-converter.version>1.16.0-SNAPSHOT</c2s.document-converter.version>
+        <c2s.document-converter.version>1.16.0</c2s.document-converter.version>
     </properties>
 
     <dependencies>
