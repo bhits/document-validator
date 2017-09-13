@@ -6,9 +6,9 @@ The Document Validator is responsible for responsible for validating C32, C-CDA 
 
 # Supported Tags and Respective `Dockerfile` Links
 
-[`1.0.0(latest)`](https://github.com/bhits-dev/document-validator/releases/tag/1.0.0)
+[`1.1.0 (latest)`](https://github.com/bhits-dev/document-validator/releases/tag/1.1.0), [`1.0.0)`](https://github.com/bhits-dev/document-validator/releases/tag/1.0.0)
 
-[`Current Dockerfile`](https://github.com/bhits-dev/document-validator/blob/master/document-validator/src/main/docker/Dockerfile)
+[`Current Dockerfile`](../document-validator/src/main/docker/Dockerfile)
 
 For more information about this image, the source code, and its history, please see the [GitHub repository](https://github.com/bhits-dev/document-validator).
 
