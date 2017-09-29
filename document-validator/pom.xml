@@ -32,6 +32,7 @@
         <!-- C2S common library version -->
         <c2s-common-libraries.version>1.11.0</c2s-common-libraries.version>
         <c2s.document-converter.version>1.16.0</c2s.document-converter.version>
+        <logstash-logback-encoder.version>4.11</logstash-logback-encoder.version>
     </properties>
 
     <dependencies>
@@ -70,6 +71,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash-logback-encoder.version}</version>
         </dependency>
 
         <!--Marked the embedded servlet container as provided-->

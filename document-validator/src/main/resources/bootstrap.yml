@@ -7,6 +7,8 @@ spring:
 # Please change THE FOLLOWING DEFAULT KEY OUTSIDE OF DEVELOPMENT ENVIRONMENTS!
 encrypt:
   key: changeit
+logstash:
+  destination: dockerhost:5000
 ---
 spring.profiles: application-default
 spring:
