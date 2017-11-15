@@ -30,7 +30,7 @@
         <mdht-core.version>2.6.3.20170323</mdht-core.version>
         <mdht-plugins.version>3.0.0.201703230502</mdht-plugins.version>
         <!-- C2S common library version -->
-        <c2s-common-libraries.version>1.11.0</c2s-common-libraries.version>
+        <c2s-common-libraries.version>2.0.0</c2s-common-libraries.version>
         <c2s.document-converter.version>1.16.0</c2s.document-converter.version>
         <logstash-logback-encoder.version>4.11</logstash-logback-encoder.version>
     </properties>
